@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
+const mongoose = require("mongoose");
+
+mongoose.connect('mongodb://localhost/aspjobs');
 
 let app = express();
 app.set('views', path.join(__dirname, 'views'));
