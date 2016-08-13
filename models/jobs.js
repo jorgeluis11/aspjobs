@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-let Jobs = new Schema({
+let jobsSchema = new Schema({
   job_title: { type: String, required: true, maxlength: 55},
   job_type: { type: String, required: true, allowedValues: ['Full-time', 'Part-time', "Contract", "Freelance"] },
   job_description: { type: String, required: true, maxlength: 255 },
@@ -18,5 +18,8 @@ let Jobs = new Schema({
   created_at: Date,
   updated_at: Date
 });
+
+let Jobs = mongoose.model('Jobs', jobsSchema);
+
 
 module.exports = Jobs;

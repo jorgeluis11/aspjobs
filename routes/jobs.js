@@ -5,8 +5,7 @@ const Jobs = require('../models/jobs');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  let job = mongoose.model('Jobs', Jobs);
-    job.find({}, function(err, jobs) {
+    Jobs.find({}, function(err, jobs) {
       res.json(jobs);
     })
   
@@ -18,9 +17,7 @@ router.get('/view/:id', function(req, res, next) {
 });
 
 router.get('/insert', function(req, res, next) {
-  let job = mongoose.model('Jobs', Jobs);
-
-  job({
+  Jobs({
     job_title: "Job Title",
     job_type: "Full-time",
     job_description: 'Job Description',
