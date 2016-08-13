@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
+const jobs = require('./routes/jobs');
 const mongoose = require("mongoose");
 
 mongoose.connect('mongodb://localhost/aspjobs');
@@ -40,6 +41,7 @@ class Server {
     routeConfig() {
         app.use('/', routes);
         app.use('/users', users);
+        app.use('/job', jobs);
 
         app.use((req, res, next) => {
             let err = new Error('Not Found');
