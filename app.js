@@ -9,12 +9,28 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const jobs = require('./routes/jobs');
 const mongoose = require("mongoose");
+const hbs = require('express-hbs');
 
 mongoose.connect('mongodb://localhost/aspjobs');
 
 let app = express();
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
+app.engine('hbs', hbs.express4({
+  partialsDir: __dirname + '/views'
+}));
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+
+// var hbs = handlebars.create({
+//   partialsDir :__dirname
+//  });
+
+//  hbs.engine(__dirname + "/views/index.html", {name:"Jakob"}, function(err, html) {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log(html);
+// }); 
 
 class Server {
 

@@ -17,20 +17,20 @@ router.get('/view/:id', function(req, res, next) {
 });
 
 router.get('/insert', function(req, res, next) {
-  Jobs({
-    job_title: "Job Title",
-    job_type: "Full-time",
-    job_description: 'Job Description',
-    location_type: "Remote" ,
-    company_name: "Company Name",
-    company_url: "www.google.com",
-    company_location: "San Juan",
-    company_description: 'Company Description',
-    company_apply: 'Job Apply description',
-    created_at: new Date(),
-    updated_at: new Date()
-  }).save();
-  res.send('sample insert!');
+  // Jobs({
+  //   job_title: "Job Title",
+  //   job_type: "Full-time",
+  //   job_description: 'Job Description',
+  //   location_type: "Remote" ,
+  //   company_name: "Company Name",
+  //   company_url: "www.google.com",
+  //   company_location: "San Juan",
+  //   company_description: 'Company Description',
+  //   company_apply: 'Job Apply description',
+  //   created_at: new Date(),
+  //   updated_at: new Date()
+  // }).save();
+  res.render('jobs');
 
 });
 
