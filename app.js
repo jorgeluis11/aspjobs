@@ -18,6 +18,10 @@ let app = express();
 app.engine('hbs', hbs.express4({
   partialsDir: __dirname + '/views'
 }));
+
+// hbs.registerPartial('userMessage',
+//     '');
+
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
@@ -52,6 +56,8 @@ class Server {
             sourceMap: true
         }));
         app.use(express.static(path.join(__dirname, 'public')));
+        app.use("/stylesheets",express.static(__dirname + "/stylesheets"));
+        console.log(path.join(__dirname, 'public'));
     }
 
     routeConfig() {

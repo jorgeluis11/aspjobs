@@ -6,9 +6,9 @@ const Jobs = require('../models/jobs');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     Jobs.find({}, function(err, jobs) {
-      res.json(jobs);
+      console.log(jobs);
+      res.render('jobs',{jobs:jobs});
     })
-  
 });
 
 router.get('/view/:id', function(req, res, next) {

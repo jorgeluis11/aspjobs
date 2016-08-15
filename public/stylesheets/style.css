@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.white{
+  color:white!important;
 }
 
-a {
-  color: #00B7FF;
+.navbar-asp{
+  background-color: #5B2C92;
 }
