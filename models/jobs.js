@@ -19,7 +19,4 @@ let jobsSchema = new Schema({
   updated_at: Date
 });
 
-let Jobs = mongoose.model('Jobs', jobsSchema);
-
-
-module.exports = Jobs;
+module.exports = mongoose.model('Jobs', jobsSchema);
