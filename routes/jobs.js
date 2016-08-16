@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   console.log("a");
     Jobs.find({}, function(err, jobs) {
       res.render('jobs', {jobs: jobs});
+
     })
 });
 
@@ -33,9 +34,9 @@ router.get('/insert', function(req, res, next) {
     created_at: new Date(),
     updated_at: new Date()
   }).save();
-  res.render('jobs');
-
+  res.send(`Post ${id}`);
 });
+
 
 
 module.exports = router;
