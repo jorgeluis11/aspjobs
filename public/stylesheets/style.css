@@ -2,6 +2,16 @@
   color:white!important;
 }
 
-.navbar-asp{
-  background-color: #5B2C92;
+.asp-violet{
+  background-color: #5B2C92!important;
 }
+
+.badge-radio{
+  border-radius: 5px!important;
+}
+
+.job{
+  padding:20px 5px;
+  border-bottom: 1px solid rgba(150,150,150,.2);
+}
+

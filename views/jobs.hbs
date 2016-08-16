@@ -3,16 +3,24 @@
   <div class="row">
     <div class="col-md-8">
       {{#each jobs as |job|}}
-          <div class="row">
-            <div class="col-md-4">
-            {{job.job_title}} At {{job.company_name}}
-            <br>
-            {{job.job_description}}
-            </div>
-            <div class="col-md-4">
-                <span class="badge">{{job.company_location}}</span>
-                <span class="badge">{{job.job_type}}</span>
-                <span class="badge">{{job.location_type}}</span>
+          <div class="row job">
+            <div class="">
+              <div class="col-md-4">
+              {{job.job_title}} At {{job.company_name}}
+              <br>
+              {{job.job_description}}
+              </div>
+              <div class="col-md-4">
+                  <span class="badge asp-violet badge-radio">{{job.company_location}}</span>
+                  <span class="badge asp-violet badge-radio">{{job.job_type}}</span>
+                  <span class="badge asp-violet badge-radio">
+                  {{#ifeq job.location_type 'Remote'}}
+                    <i class="fa fa-wifi"></i>
+                  {{else}}
+                    <i class="fa fa-briefcase"></i>
+                  {{/ifeq}}
+                  {{job.location_type}}</span>
+              </div>
             </div>
           </div>
       {{/each}}
