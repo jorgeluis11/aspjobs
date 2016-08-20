@@ -76,34 +76,32 @@ rule.second = 1;
 // console.log(rule);
 var j = schedule.scheduleJob(rule, function(){
 
-  Subscription.find({active:true,schedule:"Daily"}, function(error, subs){
-    console.log(subs);
-    let from_email = new helper.Email("no-reply@aspjobs.com");
-    let subject = 'Hello World from the SendGrid Node.js Library!';
-    let content = new helper.Content('text/plain', 'Hello, Email!');
+  // Subscription.find({active:true,schedule:"Daily"}, function(error, subs){
+  //   console.log(subs);
+  //   let from_email = new helper.Email("no-reply@aspjobs.com");
+  //   let subject = 'Hello World from the SendGrid Node.js Library!';
+  //   let content = new helper.Content('text/plain', 'Hello, Email!');
 
-    subs.map(function(item) {
-      let to_email = new helper.Email(item.email);
-      var sg = require('sendgrid')("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");
-      let mail = new helper.Mail(from_email, subject, to_email, content)
+  //   subs.map(function(item) {
+  //     let to_email = new helper.Email(item.email);
+  //     var sg = require('sendgrid')("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");
+  //     let mail = new helper.Mail(from_email, subject, to_email, content)
 
-      var request = sg.emptyRequest({
-        method: 'POST',
-        path: '/v3/mail/send',
-        body: mail.toJSON()
-      });
+  //     var request = sg.emptyRequest({
+  //       method: 'POST',
+  //       path: '/v3/mail/send',
+  //       body: mail.toJSON()
+  //     });
       
 
-      sg.API(request, function(error, response) {
-        console.log(response.statusCode)
-        console.log(response.body)
-        console.log(response.headers)
-      });
-      }, this);
-
-    // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  //     sg.API(request, function(error, response) {
+  //       console.log(response.statusCode)
+  //       console.log(response.body)
+  //       console.log(response.headers)
+  //     });
+  //     }, this);
     
-  });
+  // });
   
 });
 

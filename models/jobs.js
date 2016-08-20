@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var slug = require('mongoose-slug');
 
 let jobsSchema = new Schema({
   job_title: { type: String, required: true, maxlength: 55},
@@ -18,5 +19,8 @@ let jobsSchema = new Schema({
   created_at: Date,
   updated_at: Date
 });
+
+jobsSchema.plugin(slug(['job_title', 'company_name']));
+
 
 module.exports = mongoose.model('Jobs', jobsSchema);
