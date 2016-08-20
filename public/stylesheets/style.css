@@ -3,6 +3,19 @@
   margin-top:30px;
 }
 
+.bold{
+  font-weight: bold;
+}
+
+.no-bold{
+  font-weight: normal;
+}
+
+.thin{
+  font-weight: 300 !important;
+}
+
+
 .white{
   color:white!important;
 }
@@ -16,7 +29,7 @@
 }
 
 .job{
-  padding:20px 5px;
+  padding:10px 5px;
   border-bottom: 1px solid rgba(150,150,150,.2);
 }
 

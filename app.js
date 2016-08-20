@@ -11,7 +11,8 @@ const jobs = require("./routes/jobs");
 const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
-
+const helper = require('sendgrid').mail;
+  
 mongoose.connect('mongodb://localhost/aspjobs');
 
 const app = express();
@@ -71,7 +72,25 @@ var rule = new schedule.RecurrenceRule();
 rule.second = 1; 
 console.log(rule);
 var j = schedule.scheduleJob(rule, function(){
-  console.log('The answer to life, the universe, and everything!');
+  let from_email = new helper.Email('test@example.com')
+  let to_email = new helper.Email('perez.jorge718@gmail.com')
+  let subject = 'Hello World from the SendGrid Node.js Library!'
+  let content = new helper.Content('text/plain', 'Hello, Email!')
+  let mail = new helper.Mail(from_email, subject, to_email, content)
+
+  // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  var sg = require('sendgrid')("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");
+  var request = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: mail.toJSON()
+  });
+
+  sg.API(request, function(error, response) {
+    console.log(response.statusCode)
+    console.log(response.body)
+    console.log(response.headers)
+  });
 });
 
 module.exports = app;

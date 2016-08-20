@@ -3,30 +3,39 @@
   <div class="row margin-md">
     <div class="col-md-8">
       {{#each jobs as |job|}}
+      <a href="/jobs/view/{{job.slug}}">
           <div class="row job">
             <div class="">
-              <div class="col-md-4">
-              {{job.job_title}} At {{job.company_name}}
-              <br>
-              {{job.job_description}}
+              <div class="col-md-6">
+              <h4>
+                <b>{{job.job_title}}</b> 
+                <span class="no-bold">At {{job.company_name}}
+                    <br>
+                    {{job.job_description}}
+                </span>
+              </h4>
               </div>
-              <div class="col-md-8">
-                  <span class="badge asp-violet badge-radio">{{job.company_location}}</span>
-                  <span class="badge asp-violet badge-radio">{{job.job_type}}</span>
-                  <span class="badge asp-violet badge-radio">
+              <div class="col-md-6">
+                <h4 >
+                  <span class="badge asp-violet badge-radio thin">{{job.company_location}}</span>
+                  <span class="badge asp-violet badge-radio thin">{{job.job_type}}</span>
+                  <span class="badge asp-violet badge-radio thin">
+               
                   {{#ifeq job.location_type 'Remote'}}
-                    <i class="fa fa-wifi"></i>
+                    <i class="fa fa-wifi thin"></i>
                   {{else}}
-                    <i class="fa fa-briefcase"></i>
+                    <i class="fa fa-briefcase thin"></i>
                   {{/ifeq}}
                   {{job.location_type}}</span>
-                  <div class="pull-right">
+                  <div class="pull-right thin">
                     {{#humanize job.created_at}}
                     {{/humanize}}
                   </div>
+                   </h4>
               </div>
             </div>
           </div>
+          </a>
       {{/each}}
     </div>
     <div class="col-md-4">
