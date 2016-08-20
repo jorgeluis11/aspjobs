@@ -1,8 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const mongoose = require("mongoose");
 const Jobs = require('../models/jobs');
 const hbs = require('express-handlebars');
+const Handlebars     = require('handlebars');
+const HandlebarsIntl = require('handlebars-intl');
+const moment = require('moment');
+
+HandlebarsIntl.registerWith(Handlebars);
 
 // hbs.create({
 //   helpers: {
@@ -17,7 +22,7 @@ const hbs = require('express-handlebars');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
- Jobs.find({}, function(err, jobs) {
+ Jobs.find({}).sort({created_at: -1}).find( function(err, jobs) {
       res.render('jobs', {jobs: jobs, 
         helpers: {
             'ifeq': function(v1, v2, options) {
@@ -25,7 +30,10 @@ router.get('/', function(req, res, next) {
               return options.fn(this);
             }
             return options.inverse(this);
-          }
+          },
+          'humanize': function(v1, options) {
+              return  moment(v1).from(moment(), true);
+          },
         }});
     })
 });

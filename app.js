@@ -9,7 +9,8 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const jobs = require("./routes/jobs");
 const mongoose = require("mongoose");
-var hbs = require('express-handlebars');
+const hbs = require('express-handlebars');
+const schedule = require('node-schedule');
 
 mongoose.connect('mongodb://localhost/aspjobs');
 
@@ -64,6 +65,13 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+var rule = new schedule.RecurrenceRule();
+rule.second = 1; 
+console.log(rule);
+var j = schedule.scheduleJob(rule, function(){
+  console.log('The answer to life, the universe, and everything!');
 });
 
 module.exports = app;

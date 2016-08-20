@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Example row of columns -->
-  <div class="row">
+  <div class="row margin-md">
     <div class="col-md-8">
       {{#each jobs as |job|}}
           <div class="row job">
@@ -10,7 +10,7 @@
               <br>
               {{job.job_description}}
               </div>
-              <div class="col-md-4">
+              <div class="col-md-8">
                   <span class="badge asp-violet badge-radio">{{job.company_location}}</span>
                   <span class="badge asp-violet badge-radio">{{job.job_type}}</span>
                   <span class="badge asp-violet badge-radio">
@@ -20,6 +20,10 @@
                     <i class="fa fa-briefcase"></i>
                   {{/ifeq}}
                   {{job.location_type}}</span>
+                  <div class="pull-right">
+                    {{#humanize job.created_at}}
+                    {{/humanize}}
+                  </div>
               </div>
             </div>
           </div>
