@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const jobs = require("./routes/jobs");
+const subscription = require("./routes/subscription");
 const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
-  
+const Subscription = require('./models/subscription');
+
 mongoose.connect('mongodb://localhost/aspjobs');
 
 const app = express();
@@ -36,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/jobs', jobs);
+app.use('/subscription', subscription);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,27 +73,38 @@ app.use(function(err, req, res, next) {
 
 var rule = new schedule.RecurrenceRule();
 rule.second = 1; 
-console.log(rule);
+// console.log(rule);
 var j = schedule.scheduleJob(rule, function(){
-  let from_email = new helper.Email('test@example.com')
-  let to_email = new helper.Email('perez.jorge718@gmail.com')
-  let subject = 'Hello World from the SendGrid Node.js Library!'
-  let content = new helper.Content('text/plain', 'Hello, Email!')
-  let mail = new helper.Mail(from_email, subject, to_email, content)
 
-  // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-  var sg = require('sendgrid')("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");
-  var request = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON()
-  });
+  Subscription.find({active:true,schedule:"Daily"}, function(error, subs){
+    console.log(subs);
+    let from_email = new helper.Email("no-reply@aspjobs.com");
+    let subject = 'Hello World from the SendGrid Node.js Library!';
+    let content = new helper.Content('text/plain', 'Hello, Email!');
 
-  sg.API(request, function(error, response) {
-    console.log(response.statusCode)
-    console.log(response.body)
-    console.log(response.headers)
+    subs.map(function(item) {
+      let to_email = new helper.Email(item.email);
+      var sg = require('sendgrid')("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");
+      let mail = new helper.Mail(from_email, subject, to_email, content)
+
+      var request = sg.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON()
+      });
+      
+
+      sg.API(request, function(error, response) {
+        console.log(response.statusCode)
+        console.log(response.body)
+        console.log(response.headers)
+      });
+      }, this);
+
+    // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+    
   });
+  
 });
 
 module.exports = app;
