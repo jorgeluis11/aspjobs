@@ -15,7 +15,7 @@ const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
 const Subscription = require('./models/subscription');
 
-mongoose.connect('mongodb://localhost/aspjobs');
+mongoose.connect('mongodb://root:root@ds013216.mlab.com:13216/aspjobs');
 
 const app = express();
 
@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 var rule = new schedule.RecurrenceRule();
-rule.second = 1; 
+rule.second = 1;
 // console.log(rule);
 var j = schedule.scheduleJob(rule, function(){
 
@@ -92,7 +92,7 @@ var j = schedule.scheduleJob(rule, function(){
   //       path: '/v3/mail/send',
   //       body: mail.toJSON()
   //     });
-      
+
 
   //     sg.API(request, function(error, response) {
   //       console.log(response.statusCode)
@@ -100,9 +100,9 @@ var j = schedule.scheduleJob(rule, function(){
   //       console.log(response.headers)
   //     });
   //     }, this);
-    
+
   // });
-  
+
 });
 
 module.exports = app;
