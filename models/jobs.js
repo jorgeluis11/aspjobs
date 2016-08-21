@@ -16,8 +16,8 @@ let jobsSchema = new Schema({
 //     age: Number,
 //     website: String
 //   },
-  created_at: Date,
-  updated_at: Date
+  created_at: { type: Date, default: Date.now },
+  // updated_at: Date
 });
 
 jobsSchema.plugin(slug(['job_title', 'company_name']));
