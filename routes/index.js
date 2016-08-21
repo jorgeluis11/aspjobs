@@ -23,7 +23,8 @@ HandlebarsIntl.registerWith(Handlebars);
 /* GET home page. */
 router.get('/', function(req, res, next) {
  Jobs.find({}).sort({created_at: -1}).find( function(err, jobs) {
-      res.render('jobs', {jobs: jobs, 
+      // console.log(jobs[2])
+      res.render('jobs', {jobs: jobs,
         helpers: {
             'ifeq': function(v1, v2, options) {
             if(v1 === v2) {
@@ -37,5 +38,6 @@ router.get('/', function(req, res, next) {
         }});
     })
 });
+
 
 module.exports = router;
