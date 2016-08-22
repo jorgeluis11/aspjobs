@@ -14,8 +14,8 @@ const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
 const Subscription = require('./models/subscription');
-
-mongoose.connect('mongodb://root:root@ds013216.mlab.com:13216/aspjobs');
+// mongoose.connect('process.env.DATABASE');
+mongoose.connect('mongodb://root:root@ds013206.mlab.com:13206/aspjobs');
 
 const app = express();
 
@@ -85,6 +85,7 @@ var j = schedule.scheduleJob(rule, function(){
   //   subs.map(function(item) {
   //     let to_email = new helper.Email(item.email);
   //     var sg = require('sendgrid')("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");
+  //     var sg = require('sendgrid')("process.env.sendGridAPI");
   //     let mail = new helper.Mail(from_email, subject, to_email, content)
 
   //     var request = sg.emptyRequest({
