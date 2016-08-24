@@ -6,7 +6,6 @@ const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const HandlebarsIntl = require('handlebars-intl');
 const moment = require('moment');
-const slug = require('slug');
 
 const Jobs = require('../models/jobs');
 
