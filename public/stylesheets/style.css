@@ -39,9 +39,34 @@
 
 .description{
   color: #666!important;
+}
 
+.job-title{
+  font-size: 22px;
+  color: #532786!important;
+}
+
+.light-gray{
+  font-size: 14px;
+  color: #666;
+}
+
+.sub-title{
+  font-size: 17px;
+  color: black;
+  font-weight: 200;
 }
 
 .navbar{
   border-radius: 0;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+  background-color: #eee;
+  color: black!important;
+  text-decoration: underline;
+}
+
+.navbar{
+  box-shadow: 0px 1px 10px #aaa;
 }

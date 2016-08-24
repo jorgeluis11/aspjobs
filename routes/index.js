@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
-const Jobs = require('../models/jobs');
+
 const hbs = require('express-handlebars');
-const Handlebars     = require('handlebars');
+const Handlebars = require('handlebars');
 const HandlebarsIntl = require('handlebars-intl');
 const moment = require('moment');
+const slug = require('slug');
+
+const Jobs = require('../models/jobs');
+
 
 HandlebarsIntl.registerWith(Handlebars);
 
@@ -23,6 +27,10 @@ HandlebarsIntl.registerWith(Handlebars);
 /* GET home page. */
 router.get('/', function(req, res, next) {
  Jobs.find( function(err, jobs) {
+      var jobs = jobs;
+
+      console.log(jobs)
+
       res.render('jobs', {jobs: jobs,
         helpers: {
             'ifeq': function(v1, v2, options) {
@@ -35,7 +43,7 @@ router.get('/', function(req, res, next) {
               return  moment(v1).from(moment(), true);
           },
         }});
-    }).sort({ id: -1 })
+    }).sort({ "metadata.date_submit": -1 });
 });
 
 

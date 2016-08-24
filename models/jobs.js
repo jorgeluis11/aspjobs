@@ -10,7 +10,6 @@ let jobsSchema = new Schema({
   textfield_27716477: { type: String, required: true, maxlength: 55}, // Company Name
   textfield_27717637: String, // Company Url
   textfield_27716361: { type: String, required: true, maxlength: 55 }, // Company Location
-  // textarea_27716421: { type: String, required: true, maxlength: 255 }, // Company Description
   textarea_27716460: { type: String, required: true, maxlength: 255 }, // company_apply
 
   created_at: { type: Date, default: Date.now },

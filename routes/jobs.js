@@ -1,51 +1,40 @@
 const express = require('express');
 const router = express.Router();
+
 const mongoose = require("mongoose");
 const Jobs = require('../models/jobs');
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  //   var test = Jobs({
-  //   "textfield_27716413": "aaaa",
-  //   "list_27717784_choice": "Full-time",
-  //   "textarea_27716421": 'Job Description',
-  //   "list_27718927_choice": "OnSite" ,
-  //   "textfield_27716477": "Company Name",
-  //   "textfield_27717637": "www.google.com",
-  //   "textfield_27716361": "San Juan",
-  //   "textarea_27716460": 'Job Apply description',
-  //   created_at: new Date(),
-  //   updated_at: new Date()
-  // }).save();
-  res.render('insert');
-
-});
+const moment = require('moment');
 
 router.get('/view/:id', function(req, res, next) {
   var id = req.params.id;
 
-  Jobs.find({id:id}, function(err, job) {
-    res.render('jobs', {job: job});
+  Jobs.find({'_id':id}, function(err, job) {
+    res.render('jobs-detail', {'job': job,
+      formatDate: function(datetime, format) {
+        if (moment) {
+          return moment(datetime).format(format);
+        }
+        else {
+          return datetime;
+        }
+      },
+      helpers: {
+          'ifeq': function(v1, v2, options) {
+          if(v1 === v2) {
+            return options.fn(this);
+          }
+          return options.inverse(this);
+        },
+        'humanize': function(v1, options) {
+            return  moment(v1).from(moment(), true);
+        },
+      }});
   })
 });
 
 router.get('/insert', function(req, res, next) {
-  // Jobs({
-  //   job_title: "Job Title",
-  //   job_type: "Full-time",
-  //   job_description: 'Job Description',
-  //   location_type: "OnSite" ,
-  //   company_name: "Company Name",
-  //   company_url: "www.google.com",
-  //   company_location: "San Juan",
-  //   company_description: 'Company Description',
-  //   company_apply: 'Job Apply description',
-  //   created_at: new Date(),
-  //   updated_at: new Date()
-  // }).save();
-  res.render(`insert`);
+  res.render('insert');
 });
-
 
 
 module.exports = router;
