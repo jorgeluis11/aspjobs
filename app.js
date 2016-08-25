@@ -15,7 +15,7 @@ const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
 const Subscription = require('./models/subscription');
 // mongoose.connect('process.env.DATABASE');
-mongoose.connect('mongodb://root:root@ds013206.mlab.com:13206/aspjobs');
+mongoose.connect('mongodb://AngryDevelopers1234:Test1234@ds013206.mlab.com:13206/aspjobs');
 
 const app = express();
 

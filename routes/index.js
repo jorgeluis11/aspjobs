@@ -22,7 +22,7 @@ HandlebarsIntl.registerWith(Handlebars);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
- Jobs.find({}).sort({created_at: -1}).find( function(err, jobs) {
+ Jobs.find( function(err, jobs) {
       res.render('jobs', {jobs: jobs,
         helpers: {
             'ifeq': function(v1, v2, options) {
@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
               return  moment(v1).from(moment(), true);
           },
         }});
-    })
+    }).sort({ id: -1 })
 });
 
 
