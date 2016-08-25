@@ -10,6 +10,7 @@ const users = require('./routes/users');
 const jobs = require("./routes/jobs");
 const about = require("./routes/about");
 const subscription = require("./routes/subscription");
+const restApi = require("./routes/api");
 const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
@@ -47,6 +48,7 @@ app.use('/users', users);
 app.use('/jobs', jobs);
 app.use('/about', about);
 app.use('/subscription', subscription);
+app.use('/api', restApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
