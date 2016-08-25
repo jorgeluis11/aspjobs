@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row margin-md">
     <section class="col-md-8">
       {{#each jobs as |job|}}
       <a class="view" href="/jobs/{{slug job.textfield_27716413}}/{{job._id}}">
@@ -33,8 +33,27 @@
       </a>
       {{/each}}
     </section>
-    <section class="col-md-4">
-
+    <section class="col-md-4 text-center">
+        <hgroup>
+          <h4>
+            Subscribe for
+            <select class="frecuency">
+                <option value="0">daily</option>
+                <option value="1" selected>weekly</option>
+                <option value="2">monthly</option>
+            </select>
+            newsletter 
+          </h4>
+          <h3 class="free">For Free</h3>
+        </hgroup>
+        <form action="#">
+          <div class="input-group">
+            <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email" required>
+            <button class="btn btn-info btn-lg asp-violet" type="submit">Submit</button>
+          </div>
+        </form>
+        <!--<small class="promise"><em>We won't send spam.</em></small>-->
+        
     </section>
   </div>
 </div>

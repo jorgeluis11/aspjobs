@@ -9,7 +9,7 @@ var verificationTokenSchema = new mongoose.Schema({
    created_at: {type: Date, required: true, default: Date.now, expires: '4h'}
 });
 
-subscriptionSchema.methods = {
+verificationTokenSchema.methods = {
    createVerificationToken(done) {
       return uuid.v4();
       // var verificationToken = this;
@@ -29,4 +29,4 @@ subscriptionSchema.methods = {
     }
 };
 
-module.exports = mongoose.model('Subscription', verificationTokenSchema);
+module.exports = mongoose.model('Token', verificationTokenSchema);
