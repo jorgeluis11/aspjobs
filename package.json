@@ -23,6 +23,7 @@
     "node-schedule": "^1.1.1",
     "sendgrid": "^4.0.1",
     "serve-favicon": "~2.3.0",
+    "sitemap": "^1.8.1",
     "slug": "^0.9.1"
   },
   "engines": {

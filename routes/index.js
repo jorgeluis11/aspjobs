@@ -37,7 +37,10 @@ router.get('/', (req, res, next) => {
 
           return "";
         },
-      }});
+      },
+      'title': 'Jobs Asp',
+      'metadescription': 'Asp jobs homepage section.'
+    });
   }).sort({ "metadata.date_submit": -1 });
 });
 

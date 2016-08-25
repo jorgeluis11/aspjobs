@@ -29,12 +29,19 @@ router.get('/:slug/:id', (req, res, next) => {
         'humanize': (v1, options) => {
             return  moment(v1).from(moment(), true);
         },
-      }});
+      },
+      'title': `Jobs Asp | ${job[0].textfield_27716413}`,
+      'metadescription': 'Asp jobs detail job section.'
+    });
   })
 });
 
-router.get('/insert', (req, res, next) => {
-  res.render('insert');
+router.get('/post', (req, res, next) => {
+  res.render('insert',
+    {
+      'title': `Jobs Asp | Post New Job`,
+      'metadescription': 'Asp jobs post new job section.'
+    });
 });
 
 
