@@ -24,7 +24,11 @@
         <legend></legend>
       </div>
 
-      <p>{{job.0.textarea_27716421}}</p>
+      <p>{{{markdown job.0.textarea_27716421}}}</p>
+
+      {{#if job.0.website_28133080}}
+        <a class="col-xs-12 btn btn-magick btn-lg btn3d text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
+      {{/if}}
     </section>
 
     <section class="col-md-4">

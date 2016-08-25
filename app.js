@@ -15,12 +15,34 @@ const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
+var sm = require('sitemap')
+
 const Subscription = require('./models/subscription');
 
 // mongoose.connect('process.env.DATABASE');
 mongoose.connect('mongodb://AngryDevelopers1234:Test1234@ds013206.mlab.com:13206/aspjobs');
 
-const app = express();
+const app = express(),
+  sitemap = sm.createSitemap ({
+      hostname: 'http://jobsasp.com',
+      cacheTime: 600000,
+      urls: [
+        { url: '/',  changefreq: 'daily', priority: 1 },
+        // { url: '/jobs/:slug/:id',  changefreq: 'weekly',  priority: 0.5 },
+        { url: '/about/', changefreq: 'monthly',  priority: 0.4 },
+        { url: '/jobs/post/', changefreq: 'monthly',  priority: 0.8 }
+      ]
+  });
+
+app.get('/sitemap.xml', (req, res) => {
+  sitemap.toXML( (err, xml) => {
+      if (err) {
+        return res.status(500).end();
+      }
+      res.header('Content-Type', 'application/xml');
+      res.send( xml );
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,7 +73,7 @@ app.use('/subscription', subscription);
 app.use('/api', restApi);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.status(404);
 
   // respond with html page
@@ -66,7 +88,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -77,18 +99,19 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('500', { url: req.url });
+    return;
+  }
 });
 
 var rule = new schedule.RecurrenceRule();
 rule.second = 1;
 // console.log(rule);
-var j = schedule.scheduleJob(rule, function(){
+var j = schedule.scheduleJob(rule, () =>{
 
   // Subscription.find({active:true,schedule:"Daily"}, function(error, subs){
   //   console.log(subs);
@@ -96,7 +119,7 @@ var j = schedule.scheduleJob(rule, function(){
   //   let subject = 'Hello World from the SendGrid Node.js Library!';
   //   let content = new helper.Content('text/plain', 'Hello, Email!');
 
-  //   subs.map(function(item) {
+  //   subs.map((item) => {
   //     let to_email = new helper.Email(item.email);
   //     var sg = require('sendgrid')("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");
   //     var sg = require('sendgrid')("process.env.sendGridAPI");
