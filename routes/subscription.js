@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Subscription = require('../models/subscription');
 
-router.get('/insert', function(req, res, next) {
+router.get('/insert', (req, res, next) => {
   Subscription({
     email: "angrydeveloperspr@gmail.com",
     schedule: "Daily",

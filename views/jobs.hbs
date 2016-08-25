@@ -1,48 +1,40 @@
 <div class="container">
-  <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-8">
+    <section class="col-md-8">
       {{#each jobs as |job|}}
-      <a class="view" href="/jobs/view/{{job.slug}}">
-          <div class="row job">
-            <div class="">
-              <div class="col-md-6">
-              <h4>
-                <b>{{job.textfield_27716413}}</b>
-                <span class="no-bold">
-                  At {{job.textfield_27716477}}
-                </span>
-                <span class="no-bold description">
-                    <br>
-                    {{job.textarea_27716421}}
-                </span>
-              </h4>
+      <a class="view" href="/jobs/{{slug job.textfield_27716413}}/{{job._id}}">
+          <article class="row job">
+            <div class="col-md-6">
+              <div><b class="job-title">{{job.textfield_27716413}}</b></div>
+              <div>
+                <span class="light-gray">at </span>
+                <b class="sub-title">{{job.textfield_27716477}}</b>
+                <span class="light-gray"> in </span>
+                <b class="sub-title">{{job.textfield_27716361}}</b>
               </div>
-              <div class="col-md-6">
-                <h4 >
-                  <span class="badge asp-violet badge-radio thin">{{job.textfield_27716361}}</span>
-                  <span class="badge asp-violet badge-radio thin">{{job.list_27717784_choice}}</span>
-                  <span class="badge asp-violet badge-radio thin">
-
+            </div>
+            <div class="col-md-6">
+              <h4>
+                <span class="badge asp-violet badge-radio thin">{{job.list_27717784_choice}}</span>
+                <span class="badge asp-violet badge-radio thin">
                   {{#ifeq job.list_27718927_choice 'Remote'}}
                     <i class="fa fa-wifi thin"></i>
                   {{else}}
                     <i class="fa fa-briefcase thin"></i>
                   {{/ifeq}}
-                  {{job.list_27718927_choice}}</span>
-                  <div class="pull-right thin">
-                    {{#humanize job.metadata.date_submit}}
-                    {{/humanize}}
-                  </div>
-                   </h4>
-              </div>
+                  {{job.list_27718927_choice}}
+                </span>
+                <div class="pull-right thin">
+                  {{#humanize job.metadata.date_submit}}{{/humanize}} ago
+                </div>
+              </h4>
             </div>
-          </div>
-          </a>
+          </article>
+      </a>
       {{/each}}
-    </div>
-    <div class="col-md-4">
+    </section>
+    <section class="col-md-4">
 
-    </div>
+    </section>
   </div>
 </div>

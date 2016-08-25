@@ -8,12 +8,15 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const jobs = require("./routes/jobs");
+const about = require("./routes/about");
 const subscription = require("./routes/subscription");
+const restApi = require("./routes/api");
 const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
 const Subscription = require('./models/subscription');
+
 // mongoose.connect('process.env.DATABASE');
 mongoose.connect('mongodb://AngryDevelopers1234:Test1234@ds013206.mlab.com:13206/aspjobs');
 
@@ -23,8 +26,13 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 
+var handlebarsOptions = hbs.create({
+    defaultLayout: 'layout',
+    extname: '.hbs'
+});
+
 // app.set('view engine', 'hbs');
-app.engine('.hbs', hbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', hbs(handlebarsOptions));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -38,13 +46,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/jobs', jobs);
+app.use('/about', about);
 app.use('/subscription', subscription);
+app.use('/api', restApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404);
+
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
 });
 
 // error handlers

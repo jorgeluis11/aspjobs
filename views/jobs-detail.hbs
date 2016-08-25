@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <section class="col-md-8">
+      <div class="text-center">
+        <h1>{{job.0.textfield_27716413}}</h1>
+        <p>
+          <span class="light-gray">at </span>
+          <b class="sub-title">{{job.0.textfield_27716477}}</b>
+          <span class="light-gray"> in </span>
+          <b class="sub-title">{{job.0.textfield_27716361}}</b>
+        </p>
+        <p>Job Post - {{formatDate job.0.metadata.date_submit "DD MMMM, YYYY"}}</p>
+        <p>
+          <span class="badge asp-violet badge-radio thin">{{job.0.list_27717784_choice}}</span>
+          <span class="badge asp-violet badge-radio thin">
+
+          {{#ifeq job.0.list_27718927_choice 'Remote'}}
+            <i class="fa fa-wifi thin"></i>
+          {{else}}
+            <i class="fa fa-briefcase thin"></i>
+          {{/ifeq}}
+          {{job.0.list_27718927_choice}}</span>
+        </p>
+        <legend></legend>
+      </div>
+
+      <p>{{job.0.textarea_27716421}}</p>
+    </section>
+
+    <section class="col-md-4">
+
+    </section>
+  </div>
+</div>
