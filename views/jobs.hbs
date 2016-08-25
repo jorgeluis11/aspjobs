@@ -14,7 +14,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <h4>
+              <h4 >
                 <span class="badge asp-violet badge-radio thin">{{job.list_27717784_choice}}</span>
                 <span class="badge asp-violet badge-radio thin">
                   {{#ifeq job.list_27718927_choice 'Remote'}}
@@ -35,7 +35,7 @@
     </section>
     <section class="col-md-4 text-center">
         <hgroup>
-          <h4>
+          <h4 class="weekly-text">
             Subscribe for
             <select class="frecuency">
                 <option value="0">daily</option>
@@ -46,10 +46,10 @@
           </h4>
           <h3 class="free">For Free</h3>
         </hgroup>
-        <form action="#">
+        <form class="subscribe-container" action="#">
           <div class="input-group">
-            <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email" required>
-            <button class="btn btn-info btn-lg asp-violet" type="submit">Submit</button>
+            <input class="form-control subscribe-input" name="email" id="email" type="email" placeholder="Your Email" required>
+            <button class="btn btn-info asp-violet" type="submit">Submit</button>
           </div>
         </form>
         <!--<small class="promise"><em>We won't send spam.</em></small>-->
