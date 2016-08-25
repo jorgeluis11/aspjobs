@@ -52,9 +52,13 @@ app.use('/api', restApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404);
+
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
 });
 
 // error handlers
