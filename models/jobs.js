@@ -8,7 +8,7 @@ let jobsSchema = new Schema({
   textarea_27716421: { type: String, required: true, maxlength: 255 }, // Job Description
   list_27718927_choice: { type: String, required: true, allowedValues: ['Remote', 'OnSite'] }, // Location Type
   textfield_27716477: { type: String, required: true, maxlength: 55}, // Company Name
-  textfield_27717637: String, // Company Url
+  website_28133080: String, // Company Url
   textfield_27716361: { type: String, required: true, maxlength: 55 }, // Company Location
   textarea_27716460: { type: String, required: true, maxlength: 255 }, // company_apply
 
