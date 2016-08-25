@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const slug = require('slug')
 
 const mongoose = require("mongoose");
 const Jobs = require('../models/jobs');
 const moment = require('moment');
 
-router.get('/view/:id', function(req, res, next) {
+router.get('/:slug/:id', (req, res, next) => {
   var id = req.params.id;
 
-  Jobs.find({'_id':id}, function(err, job) {
+  Jobs.find({'_id':id}, (err, job) => {
     res.render('jobs-detail', {'job': job,
-      formatDate: function(datetime, format) {
+      formatDate: (datetime, format) => {
         if (moment) {
           return moment(datetime).format(format);
         }
@@ -19,20 +20,20 @@ router.get('/view/:id', function(req, res, next) {
         }
       },
       helpers: {
-          'ifeq': function(v1, v2, options) {
+          'ifeq': (v1, v2, options) => {
           if(v1 === v2) {
             return options.fn(this);
           }
           return options.inverse(this);
         },
-        'humanize': function(v1, options) {
+        'humanize': (v1, options) => {
             return  moment(v1).from(moment(), true);
         },
       }});
   })
 });
 
-router.get('/insert', function(req, res, next) {
+router.get('/insert', (req, res, next) => {
   res.render('insert');
 });
 

@@ -2,7 +2,7 @@
   <div class="row">
     <section class="col-md-8">
       {{#each jobs as |job|}}
-      <a class="view" href="/jobs/view/{{job._id}}">
+      <a class="view" href="/jobs/{{slug job.textfield_27716413}}/{{job._id}}">
           <article class="row job">
             <div class="col-md-6">
               <div><b class="job-title">{{job.textfield_27716413}}</b></div>

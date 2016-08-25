@@ -39,7 +39,7 @@
 }
 
 .job:hover{
-  background: #eee;
+  background-color: rgba(91, 44, 146, 0.08);
   /*border-radius: 10px;*/
 }
 
