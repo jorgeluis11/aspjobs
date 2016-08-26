@@ -1,3 +1,7 @@
+p, h1, h2, h3, h4, h5, h6{
+  line-height: 1.5em!important;
+}
+
 /*Margins*/
 .margin-md{
   margin-top:30px;
@@ -124,13 +128,15 @@ select.frecuency {
     transform: translateY(0);
     -webkit-transition: -webkit-transform .35s ease-in;
     transition: -webkit-transform .35s ease-in;
+    border: 1px dashed rgba(91,44,146,0.2)!important;;
+    background-color:rgba(91,44,146,0.05);
     border-bottom: none;
 }
 select.frecuency:focus {
     outline: none;
-    border-bottom: 3px solid #5B2C92!important;;
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
+    border-bottom: 2px solid #5B2C92!important;;
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
     -webkit-transition: -webkit-transform .35s ease-in;
     transition: -webkit-transform .35s ease-in;
 }

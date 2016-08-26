@@ -36,24 +36,22 @@
     <section class="col-md-4 text-center">
         <hgroup>
           <h4 class="weekly-text">
-            Subscribe for
+            Get the latest new jobs in your inbox every
             <select class="frecuency">
-                <option value="0">daily</option>
-                <option value="1" selected>weekly</option>
-                <option value="2">monthly</option>
+                <option value="Day">day</option>
+                <option value="Week" selected>week</option>
+                <!--<option value="2">month</option>-->
             </select>
-            newsletter 
           </h4>
-          <h3 class="free">For Free</h3>
+          <br>
         </hgroup>
-        <form class="subscribe-container" action="#">
+        <form class="subscribe-container" method="POST" action="/subscription/insert">
           <div class="input-group">
             <input class="form-control subscribe-input" name="email" id="email" type="email" placeholder="Your Email" required>
             <button class="btn btn-info asp-violet" type="submit">Submit</button>
           </div>
         </form>
         <!--<small class="promise"><em>We won't send spam.</em></small>-->
-        
     </section>
   </div>
 </div>

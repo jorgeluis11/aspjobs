@@ -1,36 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
+const uuid = require('node-uuid');
+const helper = require('sendgrid').mail;
+
 const Subscription = require('../models/subscription');
 const Token = require('../models/token');
-// const bodyParser = require('body-parser')
 
 router.post('/insert', (req, res) => {
-    if(!res.body.email && res.body.email.test(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
-      res.json({success:false});
+  console.log(req.body)
+    if(!req.body.email && req.body.email.test(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
+      req.json({success:false});
     }
 
-    var token = Subscription.createVerificationToken();
+    var token = uuid.v4();
     
     var subscription = Subscription({
-      email: res.body.email,
+      email: req.body.email,
       schedule: "Daily",
       verified: false
-    }).save();
-
-
+    });
+    subscription.save((error, subs) => {
     Token({
-      _subscription:subscription._id.$oid,
+      _subscription:subs.id,
       token
     }).save();
 
+    let from_email = new helper.Email("hello@aspjobs.com");
+    let subject = `ASP Jobs: Please Confirm Subscription`;
+    let content = new helper.Content('text/html', "<a href='http://localhost:3000/subscription/confirm/"+ token +"'>Subscribe</a>");
 
-    let subject = `<a href='http://localhost:3000/subscribe/${token}'>Subscribe</a>`;
-    let content = new helper.Content('text/plain', 'Hello, Email!');
-
-    let to_email = new helper.Email(item.email);
-    var sg = require('sendgrid')("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");
-    var sg = require('sendgrid')("process.env.sendGridAPI");
+    let to_email = new helper.Email(req.body.email);
+    var sg = require('sendgrid')("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");
+    // var sg = require('sendgrid')("process.env.sendGridAPI");
     let mail = new helper.Mail(from_email, subject, to_email, content)
 
     var request = sg.emptyRequest({
@@ -46,10 +48,19 @@ router.post('/insert', (req, res) => {
       console.log(response.headers)
     });
 
+    res.render("verify");
+    });
+
+    
+
 });
 
-router.get('/subscribe/:token', (req, res) => {
-  Subscription.ver
+router.get('/confirm/:token', (req, res) => {
+  Token.find({token:req.params.token}, (err, token)=>{
+    console.log(token);
+    res.send("confirmed!");
+  });
+ 
 });
 
 
