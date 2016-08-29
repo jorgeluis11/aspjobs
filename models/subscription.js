@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const Token = require('./token');
 const uuid = require('node-uuid');
 const helper = require('sendgrid').mail;
+
 // const Subscription = require('./models/subscription');
 
 let subscriptionSchema = new Schema({
