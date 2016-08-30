@@ -96,6 +96,8 @@ p, h1, h2, h3, h4, h5, h6{
 
 .weekly-text{
   height: 25px;
+  padding: 0 10%;
+  color: #444;
 }
 
 .subscribe-form-container{
@@ -128,7 +130,7 @@ select.frecuency {
     transform: translateY(0);
     -webkit-transition: -webkit-transform .35s ease-in;
     transition: -webkit-transform .35s ease-in;
-    border: 1px dashed rgba(91,44,146,0.2)!important;;
+    border: 1px dashed rgba(91,44,146,0.2 )!important;;
     background-color:rgba(91,44,146,0.05);
     border-bottom: none;
 }
@@ -275,11 +277,11 @@ input.btn.btn-lg:focus {
 .btn3d.btn-magick {
     color: #fff;
     box-shadow:0 0 0 1px #9a00cd inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #9823d5, 0 8px 8px 1px rgba(0,0,0,0.5);
-    background-color:#bb39d7;
+    background-color:#5B2C92;
 }
 .btn3d.btn-magick:active, .btn3d.btn-magick.active {
     box-shadow:0 0 0 1px #9a00cd inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
-    background-color: #bb39d7;
+    background-color: #5B2C92!important;
 }
 /* End 3d buttons */
 
@@ -289,4 +291,20 @@ input.btn.btn-lg:focus {
 .job-post{
   border: solid 1px rgba(150,150,150,0.1);
   padding-bottom: 20px !important;
+}
+
+
+
+ .img-quadrata {
+       border-radius:50%;
+       width:250px;
+       height:250px;
+}
+
+
+small{
+		text-align:center;
+        font-size:1.5em; 
+        text-decoration:underline;
+        color:gray;
 }

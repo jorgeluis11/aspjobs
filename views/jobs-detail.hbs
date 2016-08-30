@@ -9,7 +9,7 @@
           <span class="light-gray"> in </span>
           <b class="sub-title">{{job.0.textfield_27716361}}</b>
         </p>
-        <p>Job Post - {{formatDate job.0.metadata.date_submit "DD MMMM, YYYY"}}</p>
+        <p>Job Post - {{formatDate job.0.metadata.date_submit "yyyy"}}</p>
         <p>
           <span class="badge asp-violet badge-radio thin">{{job.0.list_27717784_choice}}</span>
           <span class="badge asp-violet badge-radio thin">
@@ -31,8 +31,25 @@
       {{/if}}
     </section>
 
-    <section class="col-md-4">
-
+     <section class="col-md-4 text-center">
+        <hgroup>
+          <h4 class="weekly-text">
+            Get the latest new jobs in your inbox every day
+            <!--<select class="frecuency">
+                <option value="Day">day</option>
+                <option value="Week" selected>week</option>
+                <option value="2">month</option>
+            </select>-->
+          </h4>
+          <br>
+        </hgroup>
+        <form class="subscribe-container" method="POST" action="/subscription/insert">
+          <div class="input-group">
+            <input class="form-control subscribe-input" name="email" id="email" type="email" placeholder="Your Email" required>
+            <button class="btn btn-info asp-violet" type="submit">Submit</button>
+          </div>
+        </form>
+        <!--<small class="promise"><em>We won't send spam.</em></small>-->
     </section>
   </div>
 </div>
