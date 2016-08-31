@@ -28,7 +28,7 @@ router.get('/', (req, res, next) => {
             return options.inverse(this);
         },
         'humanize': (v1, options) => {
-            return  moment(v1).from(moment(), true);
+            return moment.utc(v1).from(moment(), true);
         },
         slug: (title) => {
           if (title) {

@@ -13,12 +13,7 @@ router.get('/:slug/:id', (req, res, next) => {
   Jobs.find({'_id':id}, (err, job) => {
     res.render('jobs-detail', {'job': job,
       formatDate: (datetime, format) => {
-        if (moment) {
           return moment(datetime).format(format);
-        }
-        else {
-          return datetime;
-        }
       },
       helpers: {
         'ifeq': (v1, v2, options) => {
@@ -28,7 +23,7 @@ router.get('/:slug/:id', (req, res, next) => {
           return options.inverse(this);
         },
         'humanize': (v1, options) => {
-            return  moment(v1).from(moment(), true);
+            return  moment.utc(v1).from(moment(), true);
         },
         markdown: (text) => {
           if(text != null && text != '') {
