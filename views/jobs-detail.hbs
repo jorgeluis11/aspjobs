@@ -7,7 +7,13 @@
           <span class="light-gray">at </span>
           <b class="sub-title">{{job.0.textfield_27716477}}</b>
           <span class="light-gray"> in </span>
-          <b class="sub-title">{{job.0.textfield_27716361}}</b>
+          {{#if website_28133080}}
+            <a target="_blank" href="{{website_28133080}}">
+              <b class="sub-title">{{job.0.textfield_27716361}}</b>
+            </a>
+          {{else}}
+            <b class="sub-title">{{job.0.textfield_27716361}}</b>
+          {{/if}}
         </p>
         <p>Job Post - {{formatDate job.0.metadata.date_submit 'LL'}}</p>
         <p>
@@ -25,6 +31,14 @@
       </div>
 
       <p>{{{markdown job.0.textarea_27716421}}}</p>
+
+
+      {{#if job.0.textarea_27716460}}
+        <legend><h2>How to apply</h2></legend>
+        <p>
+            {{{markdown job.0.textarea_27716460}}}
+        </p>
+      {{/if}}
 
       {{#if job.0.website_28133080}}
         <a class="col-xs-12 btn btn-magick btn-lg btn3d text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
