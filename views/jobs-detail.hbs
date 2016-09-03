@@ -1,4 +1,6 @@
-<div class="container">
+<script src="/js/share.js"></script>
+<script src="/js/parser.js"></script>
+<div class="container margin-md">
   <div class="row">
     <section class="col-md-8 job-post">
       <div>
@@ -9,7 +11,7 @@
           <span class="light-gray"> in </span>
           <b class="sub-title">{{job.0.textfield_27716361}}</b>
         </p>
-        <p>Job Post - {{formatDate job.0.metadata.date_submit 'LL'}}</p>
+        <p>Job Post - {{formatDateTime job.0.metadata.date_submit "l"}}</p>
         <p>
           <span class="badge asp-violet badge-radio thin">{{job.0.list_27717784_choice}}</span>
           <span class="badge asp-violet badge-radio thin">
@@ -27,20 +29,42 @@
       <p>{{{markdown job.0.textarea_27716421}}}</p>
 
       {{#if job.0.website_28133080}}
-        <a class="col-xs-12 btn btn-magick btn-lg btn3d text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
+        <div class="col-xs-12 margin-md">
+         
+          <center >
+            <a class=" btn btn-info asp-violet text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
+          </center>
+        </div>
       {{/if}}
     </section>
 
      <section class="col-md-4 text-center">
-        <hgroup>
+        <div class="margin-sm-top">
+          <a class="btn btn-info btn-side asp-violet text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
+        </div>
+
+        <div class="margin-md-top">
           <h4 class="weekly-text">
-            Get the latest new jobs in your inbox every day
+            Share this job
+          </h4>
+          <div class="btn-group " role="group" aria-label="...">
+              <a class=" btn text-center btn-facebook text-center" href="{{job.0.website_28133080}}"><i class="fa fa-facebook"> </i></a>
+              <a class=" btn text-center btn-twitter text-center" data-service="twitter" data-title="share twitter"><i class="fa fa-twitter"></i></a>
+              <a class=" btn text-center btn-linkedin text-center" data-service="twitter" data-title="share linkedin"><i class="fa fa-linkedin"></i></a>
+              <a class=" btn text-center btn-email text-center border-grey" href="email"><i class="fa fa-envelope-o"></i></a>
+
+          </div>
+        </div>
+        
+        <!--<hgroup>
+          <h4 class="weekly-text">
+            Get the latest new jobs in your inbox every day-->
             <!--<select class="frecuency">
                 <option value="Day">day</option>
                 <option value="Week" selected>week</option>
                 <option value="2">month</option>
             </select>-->
-          </h4>
+          <!--</h4>
           <br>
         </hgroup>
         <form class="subscribe-container" method="POST" action="/subscription/insert">
@@ -48,8 +72,16 @@
             <input class="form-control subscribe-input" name="email" id="email" type="email" placeholder="Your Email" required>
             <button class="btn btn-info asp-violet" type="submit">Submit</button>
           </div>
-        </form>
+        </form>-->
         <!--<small class="promise"><em>We won't send spam.</em></small>-->
     </section>
   </div>
 </div>
+
+<script>
+  var list = document.getElementsByTagName('a');
+  Share.init(list, {
+      title: 'share it',
+      url: 'https://github.com/popomore/social-share'
+  });
+</script>
