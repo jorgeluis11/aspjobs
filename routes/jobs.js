@@ -12,8 +12,9 @@ router.get('/:slug/:id', (req, res, next) => {
 
   Jobs.find({'_id':id}, (err, job) => {
     res.render('jobs-detail', {'job': job,
-      formatDate: (datetime, format) => {
-          return moment(datetime).format(format);
+      formatDateTime: (datetime, format) => {
+        console.log(datetime);
+          return moment(datetime).format(format);;
       },
       helpers: {
         'ifeq': (v1, v2, options) => {
