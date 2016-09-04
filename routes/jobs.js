@@ -6,11 +6,13 @@ const mongoose = require("mongoose");
 const Jobs = require('../models/jobs');
 const moment = require('moment');
 const markdown = require('helper-markdown');
+const forms = require('forms-mongoose');
 
+ 
 router.get('/:slug/:id', (req, res, next) => {
   var id = req.params.id;
 
-  Jobs.find({'_id':id}, (err, job) => {
+  Jobs.findById(id, (err, job) => {
     res.render('jobs-detail', {'job': job,
       formatDateTime: (datetime, format) => {
         console.log(datetime);
@@ -46,6 +48,15 @@ router.get('/post', (req, res, next) => {
       'metadescription': 'Asp jobs post new job section.'
     });
 });
+
+router.post('/post', (req, res, next) => {
+  res.render('insert',
+    {
+      'title': `Jobs Asp | Post New Job`,
+      'metadescription': 'Asp jobs post new job section.'
+    });
+});
+
 
 
 module.exports = router;

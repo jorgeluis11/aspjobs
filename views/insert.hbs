@@ -1,12 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link href="/stylesheets/bootstrap-form.css" rel="stylesheet">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>aspjobs</title>
 
   <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
-  <style type="text/css">
+  <!--<style type="text/css">
     html{
       margin: 0;
       height: 100%;
@@ -20,10 +21,69 @@
       top:0;
       border:0;
     }
-  </style>
+  </style>-->
 </head>
 <body>
-  <iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>
-  <script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>
+
+
+  <div class="container auth">
+    <div id="big-form" class="auth-box">
+      <form>
+        <fieldset>
+
+
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="">
+              <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text">
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group row">
+            <label for="fun" class="col-sm-4 col-md-4 control-label">Job Type</label>
+            
+            <div class="col-sm-12 col-md-12">
+              <div class="input-group">
+                <div id="radioBtn" class="btn-group">
+                  <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="fun" data-title="a">Full-time</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="b">Part-time</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="c">Contract</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="d">Freelance</a>
+                </div>
+                <input type="hidden" name="fun" id="fun">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="fun" class="col-sm-4 col-md-4 control-label">Location Type</label>
+            <div class="col-sm-12 col-md-12">
+              <div class="input-group">
+                <div id="radioBtn" class="btn-group">
+                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location" data-title="e">Remote</a>
+                  <a name="location_type" class="btn btn-primary btn-sm notActive" data-toggle="location" data-title="f">OnSite</a>
+                </div>
+                <input type="hidden" name="fun" id="fun">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class=" control-label" for="textarea">Job Description</label>
+            <div class="">                     
+              <textarea class="form-control" id="textarea" name="textarea"></textarea>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
+  <!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
+    <script src="/js/bootstrap-form.js" rel="stylesheet"></script>
+
 </body>
 </html>

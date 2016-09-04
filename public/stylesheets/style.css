@@ -29,6 +29,10 @@ p, h1, h2, h3, h4, h5, h6, a{
   margin-top:20px;
 }
 
+.margin-xlg-top{
+  margin-top:40px;
+}
+
 
 .bold{
   font-weight: bold;
@@ -421,3 +425,15 @@ small{
 .btn-vk{color:#fff;background-color:#587ea3;border-color:rgba(0,0,0,0.2)}.btn-vk:hover,.btn-vk:focus,.btn-vk:active,.btn-vk.active,.open .dropdown-toggle.btn-vk{color:#fff;background-color:#4a6a89;border-color:rgba(0,0,0,0.2)}
 .btn-vk:active,.btn-vk.active,.open .dropdown-toggle.btn-vk{background-image:none}
 .btn-vk.disabled,.btn-vk[disabled],fieldset[disabled] .btn-vk,.btn-vk.disabled:hover,.btn-vk[disabled]:hover,fieldset[disabled] .btn-vk:hover,.btn-vk.disabled:focus,.btn-vk[disabled]:focus,fieldset[disabled] .btn-vk:focus,.btn-vk.disabled:active,.btn-vk[disabled]:active,fieldset[disabled] .btn-vk:active,.btn-vk.disabled.active,.btn-vk[disabled].active,fieldset[disabled] .btn-vk.active{background-color:#587ea3;border-color:rgba(0,0,0,0.2)}
+
+
+#radioBtn .active{
+    color: #fff;
+    background-color: #5B2C92;
+}
+
+#radioBtn .notActive{
+    color: #5B2C92;
+    background-color: #fff;
+    border: 1px solid #5B2C92;
+}

@@ -16,6 +16,7 @@
     "email-templates": "^2.4.1",
     "express": "~4.13.1",
     "express-handlebars": "^3.0.0",
+    "forms-mongoose": "0.0.6",
     "handlebars": "^4.0.5",
     "handlebars-dateformat": "^1.0.1",
     "handlebars-intl": "^1.1.2",
