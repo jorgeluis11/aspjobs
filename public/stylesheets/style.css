@@ -451,3 +451,7 @@ small{
 label{
   font-weight: bold!important;
 }
+
+.margin-error{
+  padding: 10px;
+}
