@@ -7,15 +7,16 @@
         <h1>{{job.job_title}}</h1>
         <p>
           <span class="light-gray">at </span>
-          <b class="sub-title">{{job.0.textfield_27716477}}</b>
-          <span class="light-gray"> in </span>
           {{#if website_28133080}}
-            <a target="_blank" href="{{website_28133080}}">
-              <b class="sub-title">{{job.0.textfield_27716361}}</b>
+            <a target="_blank" href="{{job.0.website_28133080}}">
+              <b class="sub-title">{{job.0.textfield_27716477}}</b>
             </a>
           {{else}}
-            <b class="sub-title">{{job.0.textfield_27716361}}</b>
+            <b class="sub-title">{{job.0.textfield_27716477}}</b>
           {{/if}}
+          <span class="light-gray"> in </span>
+          <b class="sub-title">{{job.0.textfield_27716361}}</b>
+
         </p>
         <p>Job Post - {{formatDateTime job.0.metadata.date_submit "l"}}</p>
         <p>
@@ -44,18 +45,20 @@
 
       {{#if job.0.website_28133080}}
         <div class="col-xs-12 margin-md">
-         
+
           <center >
-            <a class=" btn btn-info asp-violet text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
+            <a class=" btn btn-info asp-violet text-center" href="{{job.0.website_28133080}}" target="_blank">Apply for this position</a>
           </center>
         </div>
       {{/if}}
     </section>
 
      <section class="col-md-4 text-center">
-        <div class="margin-sm-top">
-          <a class="btn btn-info btn-side asp-violet text-center" href="{{job.0.website_28133080}}">Apply for this position</a>
-        </div>
+       {{#if job.0.website_28133080}}
+          <div class="margin-sm-top">
+            <a class="btn btn-info btn-side asp-violet text-center" href="{{job.0.website_28133080}}" target="_blank">Apply for this position</a>
+          </div>
+        {{/if}}
 
         <div class="margin-md-top">
           <h4 class="weekly-text">
@@ -69,7 +72,7 @@
 
           </div>
         </div>
-        
+
         <!--<hgroup>
           <h4 class="weekly-text">
             Get the latest new jobs in your inbox every day-->
