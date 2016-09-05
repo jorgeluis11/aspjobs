@@ -2,6 +2,36 @@
 <html>
 <head>
   <link href="/stylesheets/bootstrap-form.css" rel="stylesheet">
+  <script src="/js/jquery.3.0.1.min.js"></script>
+  <script src="/js/tinymce.min.js"></script>
+ <script type="text/javascript">
+tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+
+<style>
+  .navbar-fixed-top, .navbar-fixed-bottom {
+      position: absolute !important;
+      right: 0;
+      left: 0;
+      z-index: 0;
+  }
+</style>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>aspjobs</title>
@@ -28,43 +58,37 @@
 
   <div class="container auth">
     <div id="big-form" class="auth-box">
-      <form>
+      <h1>Post a Job</h1>
+      <form method="post" action="/jobs/post">
         <fieldset>
 
-
-          <!-- Text input-->
           <div class="form-group">
             <div class="">
               <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text">
             </div>
           </div>
 
-          <!-- Select Basic -->
           <div class="form-group row">
-            <label for="fun" class="col-sm-4 col-md-4 control-label">Job Type</label>
+            <label for="job_type" class="col-sm-4 col-md-4 control-label margin-sm-bottom">Job Type</label>
             
             <div class="col-sm-12 col-md-12">
-              <div class="input-group">
                 <div id="radioBtn" class="btn-group">
-                  <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="fun" data-title="a">Full-time</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="b">Part-time</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="c">Contract</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="fun" data-title="d">Freelance</a>
-                </div>
-                <input type="hidden" name="fun" id="fun">
+                  <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="job_type" data-title="Full-time">Full-time</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Part-time">Part-time</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Contract">Contract</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Freelance">Freelance</a>
+                <input type="hidden" name="job_type" id="job_type" value="Full-time">
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="fun" class="col-sm-4 col-md-4 control-label">Location Type</label>
+            <label for="location_type" class="col-sm-4 col-md-4 control-label">Location Type</label>
             <div class="col-sm-12 col-md-12">
-              <div class="input-group">
                 <div id="radioBtn" class="btn-group">
-                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location" data-title="e">Remote</a>
-                  <a name="location_type" class="btn btn-primary btn-sm notActive" data-toggle="location" data-title="f">OnSite</a>
-                </div>
-                <input type="hidden" name="fun" id="fun">
+                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote">Remote</a>
+                  <a name="location_type" class="btn btn-primary btn-sm notActive" data-toggle="location_type" data-title="OnSite">OnSite</a>
+                <input type="hidden" name="location_type" id="location_type" value="Remote">
               </div>
             </div>
           </div>
@@ -72,10 +96,41 @@
           <div class="form-group">
             <label class=" control-label" for="textarea">Job Description</label>
             <div class="">                     
-              <textarea class="form-control" id="textarea" name="textarea"></textarea>
+              <textarea class="form-control" id="job-description" name="job_description"></textarea>
             </div>
           </div>
-
+          <br>
+          <div class="form-group">
+            <div class="">
+              <input id="company_name" name="company_name" placeholder="Company name" class="form-control input-md" type="text">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="">
+              <input id="company_url" name="company_url" placeholder="Company URL (optional)" class="form-control input-md" type="text">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="">
+              <input id="company_location" name="company_location" placeholder="Company Location" class="form-control input-md" type="text">
+            </div>
+        </div>
+        <br>
+         <div class="form-group">
+            <div class="">
+              <input id="company_description" name="company_description" placeholder="Company Description" class="form-control input-md" type="text">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class=" control-label" for="textarea">How can people apply to this job?</label>
+          <div class="">                     
+            <textarea class="form-control" id="job-description" name="company_apply"></textarea>
+          </div>
+        </div>
+        <input class="btn asp-violet white" type="submit" value="Preview and Submit">
         </fieldset>
       </form>
     </div>

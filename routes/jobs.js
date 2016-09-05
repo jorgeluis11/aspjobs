@@ -9,10 +9,10 @@ const markdown = require('helper-markdown');
 const forms = require('forms-mongoose');
 
  
-router.get('/:slug/:id', (req, res, next) => {
-  var id = req.params.id;
+router.get('/:slug', (req, res, next) => {
+  let slug = req.params.slug;
 
-  Jobs.findById(id, (err, job) => {
+  Jobs.find({slug:slug}, (err, job) => {
     res.render('jobs-detail', {'job': job,
       formatDateTime: (datetime, format) => {
         console.log(datetime);
@@ -50,10 +50,33 @@ router.get('/post', (req, res, next) => {
 });
 
 router.post('/post', (req, res, next) => {
-  res.render('insert',
-    {
-      'title': `Jobs Asp | Post New Job`,
-      'metadescription': 'Asp jobs post new job section.'
+  console.log("body", req.body);
+  var job = Jobs(req.body);
+  job.save();
+  res.render('jobs-detail', {'job': job,
+      formatDateTime: (datetime, format) => {
+        console.log(datetime);
+          return moment(datetime).format(format);;
+      },
+      helpers: {
+        'ifeq': (v1, v2, options) => {
+          if(v1 === v2) {
+            return options.fn(this);
+          }
+          return options.inverse(this);
+        },
+        'humanize': (v1, options) => {
+            return  moment.utc(v1).from(moment(), true);
+        },
+        markdown: (text) => {
+          if(text != null && text != '') {
+            return markdown(text);
+          }
+          return "";
+        }
+      },
+      'title': `Jobs Asp | ${job.job_title}`,
+      'metadescription': 'Asp jobs detail job section.'
     });
 });
 

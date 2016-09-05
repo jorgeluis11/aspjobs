@@ -15,6 +15,6 @@ let jobsSchema = new Schema({
   metadata: {} // Additional information (date_submit, user_agent)
 });
 
-// jobsSchema.plugin(slug(['company_name', 'job_title']));
+jobsSchema.plugin(slug(['company_name', 'job_title']));
 
 module.exports = mongoose.model('Jobs', jobsSchema);

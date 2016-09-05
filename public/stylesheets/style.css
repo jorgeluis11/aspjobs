@@ -437,3 +437,11 @@ small{
     background-color: #fff;
     border: 1px solid #5B2C92;
 }
+
+#job-description{
+  height: 300px;
+}
+
+label{
+  font-weight: bold!important;
+}
