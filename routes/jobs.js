@@ -53,31 +53,7 @@ router.post('/post', (req, res, next) => {
   console.log("body", req.body);
   var job = Jobs(req.body);
   job.save();
-  res.render('jobs-detail', {'job': job,
-      formatDateTime: (datetime, format) => {
-        console.log(datetime);
-          return moment(datetime).format(format);;
-      },
-      helpers: {
-        'ifeq': (v1, v2, options) => {
-          if(v1 === v2) {
-            return options.fn(this);
-          }
-          return options.inverse(this);
-        },
-        'humanize': (v1, options) => {
-            return  moment.utc(v1).from(moment(), true);
-        },
-        markdown: (text) => {
-          if(text != null && text != '') {
-            return markdown(text);
-          }
-          return "";
-        }
-      },
-      'title': `Jobs Asp | ${job.job_title}`,
-      'metadescription': 'Asp jobs detail job section.'
-    });
+  res.redirect(`/${job.token}`, {'job': job});
 });
 
 
