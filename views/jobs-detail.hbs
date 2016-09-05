@@ -7,56 +7,61 @@
         <h1>{{job.job_title}}</h1>
         <p>
           <span class="light-gray">at </span>
-          {{#if website_28133080}}
-            <a target="_blank" href="{{job.0.website_28133080}}">
-              <b class="sub-title">{{job.0.textfield_27716477}}</b>
+          {{#if job.company_url}}
+            <a target="_blank" href="/{{job.company_url}}">
+              <b class="sub-title">{{job.company_name}}</b>
             </a>
           {{else}}
-            <b class="sub-title">{{job.0.textfield_27716477}}</b>
+            <b class="sub-title">{{job.company_name}}</b>
           {{/if}}
           <span class="light-gray"> in </span>
-          <b class="sub-title">{{job.0.textfield_27716361}}</b>
+          <b class="sub-title">{{job.company_location}}</b>
 
         </p>
-        <p>Job Post - {{formatDateTime job.0.metadata.date_submit "l"}}</p>
+        <p>Job Post - {{formatDateTime job.metadata.date_submit "l"}}</p>
         <p>
-          <span class="badge asp-violet badge-radio thin">{{job.0.list_27717784_choice}}</span>
+          <span class="badge asp-violet badge-radio thin">{{job.job_type}}</span>
           <span class="badge asp-violet badge-radio thin">
 
-          {{#ifeq job.0.list_27718927_choice 'Remote'}}
+          {{#ifeq job.location_type 'Remote'}}
             <i class="fa fa-wifi thin"></i>
           {{else}}
             <i class="fa fa-briefcase thin"></i>
           {{/ifeq}}
-          {{job.0.list_27718927_choice}}</span>
+          {{job.location_type}}</span>
         </p>
         <legend></legend>
       </div>
 
-      <p>{{{markdown job.0.textarea_27716421}}}</p>
+      <p>{{{job.job_description}}}</p>
 
-
-      {{#if job.0.textarea_27716460}}
-        <legend><h2>How to apply</h2></legend>
+      {{#if job.company_description}}
+        <h3 class="margin-bottom-none">Company</h3>
         <p>
-            {{{markdown job.0.textarea_27716460}}}
+            {{{job.company_description}}}
+        </p>
+      {{/if}}
+      {{#if job.company_apply}}
+        <h3 class="margin-bottom-none">How to apply</h3>
+        <p>
+            {{{job.company_apply}}}
         </p>
       {{/if}}
 
-      {{#if job.0.website_28133080}}
+      {{#if job.company_url}}
         <div class="col-xs-12 margin-md">
 
           <center >
-            <a class=" btn btn-info asp-violet text-center" href="{{job.0.website_28133080}}" target="_blank">Apply for this position</a>
+            <a class=" btn btn-info asp-violet text-center" href="{{job.company_url}}" target="_blank">Apply for this position</a>
           </center>
         </div>
       {{/if}}
     </section>
 
      <section class="col-md-4 text-center">
-       {{#if job.0.website_28133080}}
+       {{#if job.company_url}}
           <div class="margin-sm-top">
-            <a class="btn btn-info btn-side asp-violet text-center" href="{{job.0.website_28133080}}" target="_blank">Apply for this position</a>
+            <a class="btn btn-info btn-side asp-violet text-center" href="{{job.company_url}}" target="_blank">Apply for this position</a>
           </div>
         {{/if}}
 
@@ -65,7 +70,7 @@
             Share this job
           </h4>
           <div class="btn-group " role="group" aria-label="...">
-              <a class=" btn text-center btn-facebook text-center" href="{{job.0.website_28133080}}"><i class="fa fa-facebook"> </i></a>
+              <a class=" btn text-center btn-facebook text-center" href="{{job.company_url}}"><i class="fa fa-facebook"> </i></a>
               <a class=" btn text-center btn-twitter text-center" data-service="twitter" data-title="share twitter"><i class="fa fa-twitter"></i></a>
               <a class=" btn text-center btn-linkedin text-center" data-service="twitter" data-title="share linkedin"><i class="fa fa-linkedin"></i></a>
               <a class=" btn text-center btn-email text-center border-grey" href="email"><i class="fa fa-envelope-o"></i></a>

@@ -77,9 +77,11 @@ body{
     font-weight:300!important;
 }
 .auth form input[type="text"],
+.auth form input[type="url"],
 .auth form input[type="password"],
 .auth form input[type="email"],
 .auth form input[type="search"]{
+  text-align: left !important;
   border:none;
   padding:10px 0 2px 0;
   background-color: rgba(255, 255, 255, 0)!important;

@@ -34,6 +34,11 @@ p, h1, h2, h3, h4, h5, h6, a{
 }
 
 
+.margin-bottom-none{
+  margin-bottom:0px !important;
+}
+
+
 .bold{
   font-weight: bold;
 }
@@ -438,9 +443,10 @@ small{
     border: 1px solid #5B2C92;
 }
 
-#job-description{
+#job-description,#company-description,#company-apply{
   height: 300px;
 }
+
 
 label{
   font-weight: bold!important;

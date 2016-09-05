@@ -9,11 +9,12 @@ const markdown = require('helper-markdown');
 const forms = require('forms-mongoose');
 
  
-router.get('/:slug', (req, res, next) => {
+router.get('/detail/:slug', (req, res, next) => {
   let slug = req.params.slug;
 
   Jobs.find({slug:slug}, (err, job) => {
-    res.render('jobs-detail', {'job': job,
+    console.log(job);
+    res.render('jobs-detail', {'job': job[0],
       formatDateTime: (datetime, format) => {
         console.log(datetime);
           return moment(datetime).format(format);;
@@ -35,7 +36,7 @@ router.get('/:slug', (req, res, next) => {
           return "";
         }
       },
-      'title': `Jobs Asp | ${job[0].textfield_27716413}`,
+      'title': `Jobs Asp | ${job[0].company_name} | ${job[0].job_title}`,
       'metadescription': 'Asp jobs detail job section.'
     });
   })
@@ -51,9 +52,10 @@ router.get('/post', (req, res, next) => {
 
 router.post('/post', (req, res, next) => {
   console.log("body", req.body);
-  var job = Jobs(req.body);
+  var job = new Jobs(req.body);
   job.save();
-  res.redirect(`/${job.token}`, {'job': job});
+  console.log(job);
+  res.redirect("/");
 });
 
 
