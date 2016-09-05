@@ -3,7 +3,7 @@
 $(document).ready(function(){
   //Floatlabel
   $('input').floatlabel();
-  $('a, button').click(function(e){
+  $('.input-md').click(function(e){
     e.preventDefault();
   });
 });
