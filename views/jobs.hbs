@@ -2,7 +2,7 @@
   <div class="row margin-md">
     <section class="col-md-8">
       {{#each jobs as |job|}}
-      <a class="view" href="/jobs/view/{{job.slug}}">
+      <a class="view" href="/jobs/detail/{{job.slug}}">
           <article class="row job">
             <div class="col-md-6">
               <div><b class="job-title">{{job.job_title}}</b></div>
@@ -25,7 +25,7 @@
                   {{job.location_type}}
                 </span>
                 <div class="pull-right thin">
-                  {{#humanize job.metadata.date_submit}}{{/humanize}} ago
+                  {{#humanize job.created_at}}{{/humanize}} ago
                 </div>
               </h4>
             </div>

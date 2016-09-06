@@ -29,19 +29,12 @@ router.get('/', (req, res, next) => {
         },
         'humanize': (v1, options) => {
             return moment.utc(v1).from(moment(), true);
-        },
-        slug: (title) => {
-          if (title) {
-            return slug(title);
-          }
-
-          return "";
-        },
+        }
       },
       'title': 'Jobs Asp',
       'metadescription': 'Asp jobs homepage section.'
     });
-  }).sort({ "metadata.date_submit": -1 });
+  }).sort({ "created_at": -1 });
 });
 
 
