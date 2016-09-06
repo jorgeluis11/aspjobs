@@ -112,8 +112,8 @@
 
 <script>
  $("#share").jsSocials({
-   url: "http://www.google.com",
-    text: "Google Search Page",
+    url: window.location.href,
+    text: '{{title}}',
     showLabel: false,
     showCount: false,
     shares: ["facebook", "twitter", "linkedin", "email"]

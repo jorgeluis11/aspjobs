@@ -36,7 +36,7 @@ router.get('/detail/:slug', (req, res, next) => {
           return "";
         }
       },
-      'title': `Jobs Asp | ${job[0].company_name} | ${job[0].job_title}`,
+      'title': `Jobs Asp ${job[0].company_name}-${job[0].job_title}`,
       'metadescription': 'Asp jobs detail job section.'
     });
   })
