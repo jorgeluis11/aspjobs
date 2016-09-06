@@ -706,3 +706,11 @@ label{
     color:rgba(0,0,0,.5) !important;
 }
  
+@media(max-width:1200px){
+
+
+ .container img{
+    width: 100% !important;
+    height: 100%!important;
+  }
+}
