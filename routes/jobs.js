@@ -8,7 +8,7 @@ const moment = require('moment');
 const markdown = require('helper-markdown');
 const forms = require('forms-mongoose');
 
- 
+
 router.get('/detail/:slug', (req, res, next) => {
   let slug = req.params.slug;
 
@@ -72,7 +72,6 @@ router.get('/post', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  console.log("body", req.body);
   let job = new Jobs(req.body);
   job.save();
   res.json({success:true});

@@ -6,7 +6,7 @@
   <script src="/js/jquery.3.0.1.min.js"></script>
   <script src="/js/jquery.validate.min.js"></script>
   <script src="/js/tinymce.min.js"></script>
-  
+
 <style>
   .navbar-fixed-top, .navbar-fixed-bottom {
       position: absolute !important;
@@ -40,13 +40,13 @@
 
           <div class="form-group">
             <div class="">
-              <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text" required>
+              <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text" maxlength="55" required>
             </div>
           </div>
 
           <div class="form-group row">
             <label for="job_type" class="col-sm-4 col-md-4 control-label margin-sm-bottom">Job Type</label>
-            
+
             <div class="col-sm-12 col-md-12">
                 <div id="radioBtn" class="btn-group">
                   <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="job_type" data-title="Full-time">Full-time</a>
@@ -62,8 +62,8 @@
             <label for="location_type" class="col-sm-4 col-md-4 control-label">Location Type</label>
             <div class="col-sm-12 col-md-12">
                 <div id="radioBtn" class="btn-group">
-                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote">Remote</a>
-                  <a name="location_type" class="btn btn-primary btn-sm border-radius-right notActive" data-toggle="location_type" data-title="OnSite">OnSite</a>
+                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote"><span class="fa fa-wifi thin"></span> Remote</a>
+                  <a name="location_type" class="btn btn-primary btn-sm border-radius-right notActive" data-toggle="location_type" data-title="OnSite"><span class="fa fa-briefcase thin"></span> OnSite</a>
                 <input type="hidden" name="location_type" id="location_type" value="Remote">
               </div>
             </div>
@@ -71,39 +71,39 @@
 
           <div class="form-group">
             <label class=" control-label" for="textarea">Job Description</label>
-            <div class="">                     
+            <div class="">
               <textarea class="form-control tinyedotor1" id="job-description" name="job_description" value="" required></textarea>
             </div>
           </div>
           <br>
           <div class="form-group">
             <div class="">
-              <input id="company_name" name="company_name" placeholder="Company name" class="form-control input-md" type="text" required>
+              <input id="company_name" name="company_name" placeholder="Company name" class="form-control input-md" type="text" maxlength="55" required>
             </div>
         </div>
         <br>
         <div class="form-group">
             <div class="">
-              <input id="company_url" name="company_url" placeholder="Company URL (optional)" class="form-control input-md" type="url" required>
+              <input id="company_url" name="company_url" placeholder="Company URL (optional)" class="form-control input-md" type="url" maxlength="200" required>
             </div>
         </div>
         <br>
         <div class="form-group">
             <div class="">
-              <input id="company_location" name="company_location" placeholder="Company Location" class="form-control input-md" type="text" required>
+              <input id="company_location" name="company_location" placeholder="Company Location" class="form-control input-md" type="text" maxlength="55" required>
             </div>
         </div>
         <br>
         <div class="form-group">
           <label class=" control-label" for="textarea">Company Description (optional)</label>
-          <div class="">                     
+          <div class="">
             <textarea class="form-control" id="company-description" name="company_description" value=""></textarea>
           </div>
         </div>
         <br>
         <div class="form-group">
           <label class=" control-label" for="textarea">How can people apply to this job?</label>
-          <div class="">                     
+          <div class="">
             <textarea class="form-control tinyedotor2" id="company-apply" name="company_apply" value="" required></textarea>
           </div>
         </div>
@@ -116,10 +116,10 @@
   <!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
   <!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
   <script src="/js/bootstrap-form.js" rel="stylesheet"></script>
-  <script src="/js/semantic-modal.js"></script> 
-  <script src="/js/dimmer.min.js"></script> 
-  <script src="/js/transition.min.js"></script> 
-  <script src="/js/mustache.min.js"></script> 
+  <script src="/js/semantic-modal.js"></script>
+  <script src="/js/dimmer.min.js"></script>
+  <script src="/js/transition.min.js"></script>
+  <script src="/js/mustache.min.js"></script>
 
 <!-- Modal -->
 <div id="modaldiv"  class="ui modal background-none">
@@ -137,7 +137,7 @@
 
       <div id="submit-modal" class="btn btn-lg btn-success outline margin-md-horizontal submit-modal" submit="">
         <i class="fa fa-check"></i> Submit
-      </div>  
+      </div>
       <div id="close-modal" class="btn btn-lg btn-warning outline margin-md-horizontal">
         <i class="fa fa-ban">
           </i> Cancel
@@ -147,7 +147,7 @@
 
 
 <div id="loading-modal"  class="ui modal background-none">
-  <div class="splash-content text-center ng-scope">  
+  <div class="splash-content text-center ng-scope">
     <div name="postSpinner">
         <div class="spinner-container">
           <div class="spinner">
@@ -161,11 +161,11 @@
 
 
 <div id="thanks-modal"  class="ui modal background-none">
-  <div class="splash-content text-center ng-scope">  
+  <div class="splash-content text-center ng-scope">
     <h1>
-      <i class="fa fa-thumbs-o-up white"></i></h1>  
+      <i class="fa fa-thumbs-o-up white"></i></h1>
       <p class="lead ng-binding white" ng-bind="message">
-        Thanks for your time!</p>  
+        Thanks for your time!</p>
         <div class="btn btn-lg btn-primary outline submit-thanks-button">
           Done
         </div>
@@ -241,7 +241,7 @@
       $(document).ready(function(){
         // $("#job-form").validate();
         $("#job-form").validate_bootstrap();
-        
+
         tinymce.init({
             selector: "textarea",
             theme: "modern",
@@ -260,6 +260,7 @@
             setup: function(ed){
                 var edt = ed;
                 ed.on('blur', function(e) {
+
                     $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
                 });
             }
@@ -276,7 +277,7 @@
           form.remote = form.location_type === "Remote"?"Remote":undefined;
           form.onsite = form.location_type === "OnSite"?"OnSite":undefined;
           $(".mustache-template").html(Mustache.render(template, form));
-          
+
           $('#modaldiv').modal("show");
 
           if(!$('.tinyedotor1').html()){
@@ -289,11 +290,11 @@
           if(!$('.tinyedotor2').html()){
             $('.tinyedotor2').focus();
             $('html, body').animate({
-                  scrollTop: $(".tinyedotor2").parent().offset().bottom 
+                  scrollTop: $(".tinyedotor2").parent().offset().bottom
               }, 0);
           }
 
-        }); 
+        });
 
         $("#close-modal").click(function(){
           // console.log("modal");
@@ -316,7 +317,7 @@
                     window.location = "/";
                   });
                 },1200)
-                
+
               }
 
             }).error(function(response){
@@ -324,6 +325,4 @@
             });
         });
     })
-        
-
       </script>
