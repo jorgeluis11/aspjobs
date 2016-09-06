@@ -126,7 +126,7 @@
       <center>  <h1><i class="fa fa-hand-paper-o white"></i></h1>  
       <h2 class="white">Preview and submit</h2>
 
-      <p class="lead ng-binding white" ng-bind="message">Make sure everything looks great!</p>  
+      <p class="lead ng-binding white" ng-bind="message">Make sure everything looks great</p>  
     </center>
 
     <div class="mustache-template">
@@ -222,15 +222,6 @@
                 \{{{company_apply}}}
             </p>
           \{{/company_apply}}
-
-          \{{#company_url}}
-            <div class="col-xs-12 margin-md">
-
-              <center >
-                <a class=" btn btn-info asp-violet text-center" target="_blank">Apply for this position</a>
-              </center>
-            </div>
-          \{{/company_url}}
         </section>
       </div>
     </div>
@@ -239,8 +230,23 @@
 
     <script>
       $(document).ready(function(){
+        
         // $("#job-form").validate();
-        $("#job-form").validate_bootstrap();
+        $("#job-form").validate_bootstrap({
+          focusInvalid: true,
+          invalidHandler: function() {
+            var targetList = $("form").find(".help-block");
+
+            for(target in targetList){
+              var target = $(targetList[target]);
+              if($(target).css("display") !== "none"){
+                $(target).siblings("input").focus();
+                return;
+              }
+            }
+
+          }
+        });
 
         tinymce.init({
             selector: "textarea",
@@ -260,7 +266,6 @@
             setup: function(ed){
                 var edt = ed;
                 ed.on('blur', function(e) {
-
                     $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
                 });
             }
@@ -269,6 +274,25 @@
 
 
         $(".submit-button").click(function(){
+         if(!$("form").valid())
+          return false;
+
+           if(!$('.tinyedotor1').html()){
+            $('.tinyedotor1').focus();
+            $('html, body').animate({
+                scrollTop: $(".tinyedotor1").parent().offset().top
+            }, 0);
+            return;
+          }
+
+          if(!$('.tinyedotor2').html()){
+            $('.tinyedotor2').focus();
+            $('html, body').animate({
+                  scrollTop: $(".tinyedotor2").parent().offset().bottom
+            }, 0);
+            return;
+          }
+
           var template = $("#job-detail-template").html();
           Mustache.parse(template);   // optional, speeds up future uses
 
@@ -279,20 +303,6 @@
           $(".mustache-template").html(Mustache.render(template, form));
 
           $('#modaldiv').modal("show");
-
-          if(!$('.tinyedotor1').html()){
-            $('.tinyedotor1').focus();
-            $('html, body').animate({
-                scrollTop: $(".tinyedotor1").parent().offset().top
-            }, 0);
-          }
-
-          if(!$('.tinyedotor2').html()){
-            $('.tinyedotor2').focus();
-            $('html, body').animate({
-                  scrollTop: $(".tinyedotor2").parent().offset().bottom
-              }, 0);
-          }
 
         });
 
