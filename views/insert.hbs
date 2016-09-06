@@ -1,23 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
   <link href="/stylesheets/bootstrap-form.css" rel="stylesheet">
+  <link href="/stylesheets/semantic-modal.css" rel="stylesheet">
+  <link href="/stylesheets/dimmer.min.css" rel="stylesheet">
+  <link href="/stylesheets/transition.min.css" rel="stylesheet">
   <script src="/js/jquery.3.0.1.min.js"></script>
   <script src="/js/jquery.validate.min.js"></script>
   <script src="/js/tinymce.min.js"></script>
- 
+  
 <style>
-  /*.navbar-fixed-top, .navbar-fixed-bottom {
+  .navbar-fixed-top, .navbar-fixed-bottom {
       position: absolute !important;
       right: 0;
       left: 0;
       z-index: 0;
-  }*/
+  }
 </style>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>aspjobs</title>
-
   <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
   <!--<style type="text/css">
     html{
@@ -34,12 +31,11 @@
       border:0;
     }
   </style>-->
-</head>
-<body>
+
   <div class="container auth">
     <div id="big-form" class="auth-box">
       <h1>Post a Job</h1>
-      <form id="job-form" method="post" action="/jobs/post" onsubmit="return textAreaValidation();">
+      <form id="job-form">
         <fieldset>
 
           <div class="form-group">
@@ -56,7 +52,7 @@
                   <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="job_type" data-title="Full-time">Full-time</a>
                   <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Part-time">Part-time</a>
                   <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Contract">Contract</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Freelance">Freelance</a>
+                  <a name="job_type" class="btn btn-primary btn-sm notActive border-radius-right" data-toggle="job_type" data-title="Freelance">Freelance</a>
                 <input type="hidden" name="job_type" id="job_type" value="Full-time">
               </div>
             </div>
@@ -67,7 +63,7 @@
             <div class="col-sm-12 col-md-12">
                 <div id="radioBtn" class="btn-group">
                   <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote">Remote</a>
-                  <a name="location_type" class="btn btn-primary btn-sm notActive" data-toggle="location_type" data-title="OnSite">OnSite</a>
+                  <a name="location_type" class="btn btn-primary btn-sm border-radius-right notActive" data-toggle="location_type" data-title="OnSite">OnSite</a>
                 <input type="hidden" name="location_type" id="location_type" value="Remote">
               </div>
             </div>
@@ -111,10 +107,131 @@
             <textarea class="form-control tinyedotor2" id="company-apply" name="company_apply" value="" required></textarea>
           </div>
         </div>
-        <input class="btn asp-violet white" type="submit"  value="Preview and Submit">
+        <input class="btn asp-violet white submit-button" type="button"  value="Preview and Submit"  />
         </fieldset>
       </form>
-      <script>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
+  <!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
+  <script src="/js/bootstrap-form.js" rel="stylesheet"></script>
+  <script src="/js/semantic-modal.js"></script> 
+  <script src="/js/dimmer.min.js"></script> 
+  <script src="/js/transition.min.js"></script> 
+  <script src="/js/mustache.min.js"></script> 
+
+<!-- Modal -->
+<div id="modaldiv"  class="ui modal background-none">
+  <center><h2 class="white">Preview</h2></center>
+    <div class="mustache-template">
+    </div>
+    <div class="splash-content text-center ng-scope">  
+      <h1><i class="fa fa-hand-paper-o white"></i></h1>  
+      <p class="lead ng-binding white" ng-bind="message">Are you sure you want to submit the job post?</p>  
+      <div id="submit-modal" class="btn btn-lg btn-success outline margin-md-horizontal submit-modal" submit="">
+        <i class="fa fa-check"></i> Submit
+      </div>  
+      <div id="close-modal" class="btn btn-lg btn-warning outline margin-md-horizontal">
+        <i class="fa fa-ban">
+          </i> Cancel
+      </div>
+  </div>
+</div>
+
+
+<div id="loading-modal"  class="ui modal background-none">
+  <div class="splash-content text-center ng-scope">  
+    <div name="postSpinner">
+        <div class="spinner-container">
+          <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="thanks-modal"  class="ui modal background-none">
+  <div class="splash-content text-center ng-scope">  
+    <h1>
+      <i class="fa fa-thumbs-o-up white"></i></h1>  
+      <p class="lead ng-binding white" ng-bind="message">
+        Thanks for your time!</p>  
+        <div class="btn btn-lg btn-primary outline submit-thanks-button">
+          Done
+        </div>
+  </div>
+</div>
+
+
+
+
+<script id="job-detail-template" type="text/x-mustache-template">
+  <div class="container margin-md template">
+      <div class="row">
+        <section class="col-md-8 col-md-offset-1 job-post  backgound-white">
+          <div>
+            <h1>{{job.job_title}}</h1>
+            <p>
+              <span class="light-gray">at </span>
+              {{#if job.company_url}}
+                <a target="_blank" href="/{{job.company_url}}">
+                  <b class="sub-title">{{job.company_name}}</b>
+                </a>
+              {{else}}
+                <b class="sub-title">{{job.company_name}}</b>
+              {{/if}}
+              <span class="light-gray"> in </span>
+              <b class="sub-title">{{job.company_location}}</b>
+
+            </p>
+            <p>Job Post - {{formatDateTime job.metadata.date_submit "l"}}</p>
+            <p>
+              <span class="badge asp-violet badge-radio thin">{{job.job_type}}</span>
+              <span class="badge asp-violet badge-radio thin">
+
+              {{#ifeq job.location_type 'Remote'}}
+                <i class="fa fa-wifi thin"></i>
+              {{else}}
+                <i class="fa fa-briefcase thin"></i>
+              {{/ifeq}}
+              {{job.location_type}}</span>
+            </p>
+            <legend></legend>
+          </div>
+
+          <p>{{{job.job_description}}}</p>
+
+          {{#if job.company_description}}
+            <h3 class="margin-bottom-none">Company</h3>
+            <p>
+                {{{job.company_description}}}
+            </p>
+          {{/if}}
+          {{#if job.company_apply}}
+            <h3 class="margin-bottom-none">How to apply</h3>
+            <p>
+                {{{job.company_apply}}}
+            </p>
+          {{/if}}
+
+          {{#if job.company_url}}
+            <div class="col-xs-12 margin-md">
+
+              <center >
+                <a class=" btn btn-info asp-violet text-center" href="{{job.company_url}}" target="_blank">Apply for this position</a>
+              </center>
+            </div>
+          {{/if}}
+        </section>
+      </div>
+    </div>
+</script>
+
+
+    <script>
         // $("#job-form").validate();
         $("#job-form").validate_bootstrap();
 
@@ -124,7 +241,7 @@
             theme: "modern",
             plugins: [
                 "advlist autolink lists link image charmap preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "searchreplace wordcount visualblocks visualchars fullscreen",
                 "insertdatetime media nonbreaking save table contextmenu directionality",
                 "emoticons template paste textcolor colorpicker textpattern imagetools"
             ],
@@ -143,13 +260,19 @@
             }
         });
 
-        function textAreaValidation(){
+
+
+        $(".submit-button").click(function(){
+          
+          $('#modaldiv').modal("show");
+          //  $('.ui.modal').dimmer('show');
+
+
           if(!$('.tinyedotor1').html()){
             $('.tinyedotor1').focus();
             $('html, body').animate({
                 scrollTop: $(".tinyedotor1").parent().offset().top
             }, 0);
-            return false;
           }
 
           if(!$('.tinyedotor2').html()){
@@ -157,20 +280,39 @@
             $('html, body').animate({
                   scrollTop: $(".tinyedotor2").parent().offset().bottom 
               }, 0);
-            return false;
           }
 
-          return true;
+        }); 
 
-        }
+        $("#close-modal").click(function(){
+          // console.log("modal");
+          $('#modaldiv').modal("hide");
+
+        });
+
+        $(".submit-modal").click(function(){
+          $('#modaldiv').hide();
+          $('#loading-modal').modal("show");
+
+          $.post("/jobs/new", $('form').serialize())
+          .success(function(response){
+              $('#loading-modal').modal("hide");
+              console.log(response)
+              if(response.success){
+                setTimeout(function(){
+                  $('#loading-modal').html($("#thanks-modal").html());
+                  $(".submit-thanks-button").click(function(){
+                    window.location = "/";
+                  });
+                },1200)
+                
+              }
+
+            }).error(function(response){
+              $("#thanks-modal").modal("show");
+            });
+        });
+
+        
 
       </script>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-  <!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
-  <!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
-    <script src="/js/bootstrap-form.js" rel="stylesheet"></script>
-
-</body>
-</html>

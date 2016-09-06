@@ -45,17 +45,37 @@ router.get('/detail/:slug', (req, res, next) => {
 router.get('/post', (req, res, next) => {
   res.render('insert',
     {
+      formatDateTime: (datetime, format) => {
+        console.log(datetime);
+          return moment(datetime).format(format);;
+      },
+      helpers: {
+        'ifeq': (v1, v2, options) => {
+          if(v1 === v2) {
+            return options.fn(this);
+          }
+          return options.inverse(this);
+        },
+        'humanize': (v1, options) => {
+            return  moment.utc(v1).from(moment(), true);
+        },
+        markdown: (text) => {
+          if(text != null && text != '') {
+            return markdown(text);
+          }
+          return "";
+        }
+      },
       'title': `Jobs Asp | Post New Job`,
       'metadescription': 'Asp jobs post new job section.'
     });
 });
 
-router.post('/post', (req, res, next) => {
+router.post('/new', (req, res, next) => {
   console.log("body", req.body);
-  var job = new Jobs(req.body);
+  let job = new Jobs(req.body);
   job.save();
-  console.log(job);
-  res.redirect("/");
+  res.json({success:true});
 });
 
 
