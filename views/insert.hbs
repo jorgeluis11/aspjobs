@@ -123,12 +123,18 @@
 
 <!-- Modal -->
 <div id="modaldiv"  class="ui modal background-none">
-  <center><h2 class="white">Preview</h2></center>
+      <center>  <h1><i class="fa fa-hand-paper-o white"></i></h1>  
+      <h2 class="white">Preview and submit</h2>
+
+      <p class="lead ng-binding white" ng-bind="message">Make sure everything looks great!</p>  
+    </center>
+
     <div class="mustache-template">
     </div>
+    <br>
+    <br>
     <div class="splash-content text-center ng-scope">  
-      <h1><i class="fa fa-hand-paper-o white"></i></h1>  
-      <p class="lead ng-binding white" ng-bind="message">Are you sure you want to submit the job post?</p>  
+
       <div id="submit-modal" class="btn btn-lg btn-success outline margin-md-horizontal submit-modal" submit="">
         <i class="fa fa-check"></i> Submit
       </div>  
@@ -153,6 +159,7 @@
   </div>
 </div>
 
+
 <div id="thanks-modal"  class="ui modal background-none">
   <div class="splash-content text-center ng-scope">  
     <h1>
@@ -165,66 +172,65 @@
   </div>
 </div>
 
-
-
-
 <script id="job-detail-template" type="text/x-mustache-template">
   <div class="container margin-md template">
       <div class="row">
-        <section class="col-md-8 col-md-offset-1 job-post  backgound-white">
+        <section class="col-md-8 col-md-offset-2 job-post  backgound-white">
           <div>
-            <h1>{{job.job_title}}</h1>
+            <h1>\{{job_title}}</h1>
             <p>
               <span class="light-gray">at </span>
-              {{#if job.company_url}}
-                <a target="_blank" href="/{{job.company_url}}">
-                  <b class="sub-title">{{job.company_name}}</b>
+              {{#if company_url}}
+                <a target="_blank">
+                  <b class="sub-title">\{{company_name}}</b>
                 </a>
               {{else}}
-                <b class="sub-title">{{job.company_name}}</b>
+                <b class="sub-title">\{{company_name}}</b>
               {{/if}}
               <span class="light-gray"> in </span>
-              <b class="sub-title">{{job.company_location}}</b>
+              <b class="sub-title">\{{company_location}}</b>
 
             </p>
-            <p>Job Post - {{formatDateTime job.metadata.date_submit "l"}}</p>
+            <p>Job Post - \{{formatDateTime metadata.date_submit "l"}}</p>
             <p>
-              <span class="badge asp-violet badge-radio thin">{{job.job_type}}</span>
+              <span class="badge asp-violet badge-radio thin">\{{job_type}}</span>
               <span class="badge asp-violet badge-radio thin">
 
-              {{#ifeq job.location_type 'Remote'}}
+              \{{#remote}}
                 <i class="fa fa-wifi thin"></i>
-              {{else}}
+              \{{/remote}}
+
+              \{{#onsite}}
                 <i class="fa fa-briefcase thin"></i>
-              {{/ifeq}}
-              {{job.location_type}}</span>
+              \{{/onsite}}
+              \{{location_type}}</span>
             </p>
             <legend></legend>
           </div>
 
-          <p>{{{job.job_description}}}</p>
+          <p>\{{{job_description}}}</p>
 
-          {{#if job.company_description}}
+          {{#company_description}}
             <h3 class="margin-bottom-none">Company</h3>
             <p>
-                {{{job.company_description}}}
+                \{{{company_description}}}
             </p>
-          {{/if}}
-          {{#if job.company_apply}}
+          {{/company_description}}
+          \{{#company_apply}}
             <h3 class="margin-bottom-none">How to apply</h3>
             <p>
-                {{{job.company_apply}}}
+                \{{{company_apply}}}
             </p>
-          {{/if}}
+          \{{/company_apply}}
 
-          {{#if job.company_url}}
+          \{{#company_url}}
             <div class="col-xs-12 margin-md">
 
               <center >
-                <a class=" btn btn-info asp-violet text-center" href="{{job.company_url}}" target="_blank">Apply for this position</a>
+                <a class=" btn btn-info asp-violet text-center" target="_blank">Apply for this position</a>
               </center>
             </div>
-          {{/if}}
+          \{{/company_url}}
         </section>
       </div>
     </div>
@@ -232,9 +238,9 @@
 
 
     <script>
+      $(document).ready(function(){
         // $("#job-form").validate();
         $("#job-form").validate_bootstrap();
-
         
         tinymce.init({
             selector: "textarea",
@@ -254,7 +260,6 @@
             setup: function(ed){
                 var edt = ed;
                 ed.on('blur', function(e) {
-                  
                     $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
                 });
             }
@@ -263,10 +268,16 @@
 
 
         $(".submit-button").click(function(){
+          var template = $("#job-detail-template").html();
+          Mustache.parse(template);   // optional, speeds up future uses
+
+          // console.log(Mustache.render(template, {job_title:"cccccccc",job:"asdfg"}));
+          var form = $("form").serializeObject();
+          form.remote = form.location_type === "Remote"?"Remote":undefined;
+          form.onsite = form.location_type === "OnSite"?"OnSite":undefined;
+          $(".mustache-template").html(Mustache.render(template, form));
           
           $('#modaldiv').modal("show");
-          //  $('.ui.modal').dimmer('show');
-
 
           if(!$('.tinyedotor1').html()){
             $('.tinyedotor1').focus();
@@ -312,7 +323,7 @@
               $("#thanks-modal").modal("show");
             });
         });
-
+    })
         
 
       </script>

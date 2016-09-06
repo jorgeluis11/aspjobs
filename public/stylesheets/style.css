@@ -586,3 +586,21 @@ label{
 
 }
 
+
+
+#modaldiv{
+    padding-top: 60px!important;
+    overflow: auto;
+}
+
+
+#job-detail-template{
+  display:none;
+}
+
+.mustache-template {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
