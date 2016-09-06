@@ -1,5 +1,8 @@
-<script src="/js/share.js"></script>
+<!--<script src="/js/share.js"></script>-->
 <!--<script src="/js/parser.js"></script>-->
+<script src="/js/jssocials.min.js"></script>
+  <link href="/stylesheets/jssocials.css" rel="stylesheet">
+
 <div class="container margin-md">
   <div class="row">
     <section class="col-md-8 job-post">
@@ -8,7 +11,7 @@
         <p>
           <span class="light-gray">at </span>
           {{#if job.company_url}}
-            <a target="_blank" href="/{{job.company_url}}">
+            <a target="_blank" href="{{job.company_url}}">
               <b class="sub-title">{{job.company_name}}</b>
             </a>
           {{else}}
@@ -60,24 +63,31 @@
 
      <section class="col-md-4 text-center">
        {{#if job.company_url}}
-          <div class="margin-sm-top">
+          <div class="margin-sm-top visible-md-block visible-lg-block">
             <a class="btn btn-info btn-side asp-violet text-center" href="{{job.company_url}}" target="_blank">Apply for this position</a>
           </div>
         {{/if}}
 
         <div class="margin-md-top">
+          <div class="clear"></div>
           <h4 class="weekly-text">
             Share this job
           </h4>
-          <div class="btn-group " role="group" aria-label="...">
+          <!--<div class="btn-group " role="group" aria-label="...">
               <a class=" btn text-center btn-facebook text-center" href="{{job.company_url}}"><i class="fa fa-facebook"> </i></a>
               <a class=" btn text-center btn-twitter text-center" data-service="twitter" data-title="share twitter"><i class="fa fa-twitter"></i></a>
               <a class=" btn text-center btn-linkedin text-center" data-service="twitter" data-title="share linkedin"><i class="fa fa-linkedin"></i></a>
               <a class=" btn text-center btn-email text-center border-grey" href="email"><i class="fa fa-envelope-o"></i></a>
 
-          </div>
+          </div>-->
+
+           <div id="share">
+          
         </div>
 
+        </div>
+
+       
         <!--<hgroup>
           <h4 class="weekly-text">
             Get the latest new jobs in your inbox every day-->
@@ -101,9 +111,11 @@
 </div>
 
 <script>
-  var list = document.getElementsByTagName('a');
-  Share.init(list, {
-      title: 'share it',
-      url: 'https://github.com/popomore/social-share'
-  });
+ $("#share").jsSocials({
+   url: "http://www.google.com",
+    text: "Google Search Page",
+    showLabel: false,
+    showCount: false,
+    shares: ["facebook", "twitter", "linkedin", "email"]
+});
 </script>

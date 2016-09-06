@@ -269,7 +269,7 @@ a.btn-email{
     background-color: white;
     -webkit-transition: background-color 0.25s ease-in-out;
     transition: background-color 0.25s ease-in-out;
-        color:rgba(0,0,0,.5) !important;
+    color:rgba(0,0,0,.5) !important;
 
 }
 
@@ -608,3 +608,101 @@ label{
 .splash-content{
   margin-bottom: 150px;
 }
+
+.clear{
+  clear: both;
+}
+
+.jssocials-share{
+     display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin:5px 0 !important;
+}
+
+#share>jssocials-share{
+ 
+
+    display: inline-block;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.jssocials-share-facebook{
+
+
+    background-color: #2980b9;
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    color: white!important;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+      border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+.jssocials-share-twitter{
+    background-color: #3498db;
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    color:white !important;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+.jssocials-share-linkedin{
+   background-color: rgb(72, 117, 180);
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    color:white !important;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.jssocials-share-email{
+    background-color: white;
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    color:rgba(0,0,0,.5) !important;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+        border: 1px solid rgba(0,0,0,.4) !important;
+
+}
+
+
+
+
+
+.jssocials-share-logo{
+  color:white !important
+}
+
+.jssocials-share-email i{
+    color:rgba(0,0,0,.5) !important;
+}
+ 

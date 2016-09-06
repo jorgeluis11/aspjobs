@@ -3,7 +3,6 @@
   <link href="/stylesheets/semantic-modal.css" rel="stylesheet">
   <link href="/stylesheets/dimmer.min.css" rel="stylesheet">
   <link href="/stylesheets/transition.min.css" rel="stylesheet">
-  <script src="/js/jquery.3.0.1.min.js"></script>
   <script src="/js/jquery.validate.min.js"></script>
   <script src="/js/tinymce.min.js"></script>
 
@@ -191,7 +190,6 @@
               <b class="sub-title">\{{company_location}}</b>
 
             </p>
-            <p>Job Post - \{{formatDateTime metadata.date_submit "l"}}</p>
             <p>
               <span class="badge asp-violet badge-radio thin">\{{job_type}}</span>
               <span class="badge asp-violet badge-radio thin">
@@ -232,21 +230,7 @@
       $(document).ready(function(){
         
         // $("#job-form").validate();
-        $("#job-form").validate_bootstrap({
-          focusInvalid: true,
-          invalidHandler: function() {
-            var targetList = $("form").find(".help-block");
-
-            for(target in targetList){
-              var target = $(targetList[target]);
-              if($(target).css("display") !== "none"){
-                $(target).siblings("input").focus();
-                return;
-              }
-            }
-
-          }
-        });
+        $("#job-form").validate_bootstrap();
 
         tinymce.init({
             selector: "textarea",
@@ -274,9 +258,18 @@
 
 
         $(".submit-button").click(function(){
-         if(!$("form").valid())
-          return false;
+         if(!$("form").valid()){
+           var targetList = $("form").find(".help-block");
 
+            for(target in targetList){
+              var target = $(targetList[target]);
+              console.log(target);
+              if($(target).css("display") !== "none"){
+                $(target).siblings("input").focus();
+                return;
+              }
+            }
+         }
            if(!$('.tinyedotor1').html()){
             $('.tinyedotor1').focus();
             $('html, body').animate({
