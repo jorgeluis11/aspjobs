@@ -1,3 +1,10 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  /*padding-bottom: 20px;*/
+}
+
+
 @font-face {
   font-family: "Proxima Nova";
   src: url('../fonts/ProximaNova-Regular.otf') format("truetype");
@@ -743,7 +750,7 @@ label{
 }
 
 
-@media(max-width:600px){
+@media(max-width:736px){
   .img-about{
     width: 50%!important;
     height: 50%!important;
@@ -758,6 +765,15 @@ label{
      border-left: none !important;
      padding-left: 0px!important;
     margin-left: 0px!important;
+  }
+
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: #532786!important;
+    color:white!important;
+  }
+
+  .navbar-nav {
+    margin: 0 -15px !important;
   }
 }
 
@@ -798,6 +814,8 @@ label{
    .container-info.container iframe{
     width: 100% !important;
   }
+
+  
 }
 
 

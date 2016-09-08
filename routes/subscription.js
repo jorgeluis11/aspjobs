@@ -7,6 +7,7 @@ const uuid = require('node-uuid');
 const helper = require('sendgrid').mail;
 const EmailTemplate = require('email-templates').EmailTemplate
 const path = require('path')
+const moment = require('moment');
 
 router.post('/insert', (req, res) => {
     if(!req.body.email && req.body.email.test(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
@@ -39,9 +40,17 @@ router.post('/insert', (req, res) => {
           Token.findOne({_subscription: sub.id},function( err, t){
             if(t){
               console.log("token already created");
-              sendEmail(t.token, req.body.email);
-             
-              res.render("verify", {message:'The email confirmation was sent, verify your subscription in your <a target="_blank" href="https://mail.google.com/mail/u/0/#search/aspjobs">email address</a>'});
+              console.log(t);
+              var date = moment(t.created_at).day();
+              var now = moment().day();
+
+              if (now !== date) {
+                  t.created_at = moment();
+                  t.save();
+                  sendEmail(t.token, req.body.email);
+              } 
+
+              res.render("verify", {message:'The confirmation email was sent, verify your <a target="_blank" href="https://mail.google.com/mail/u/0/#search/aspjobs">email address</a>'});
             }else{
               console.log(token);
               console.log(sub.id)

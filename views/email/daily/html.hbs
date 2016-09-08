@@ -47,7 +47,7 @@
                                                                                     <a style="text-decoration: none;" href="{{page}}"
                                                                                         style="border:0;margin:0;padding:0" target="_blank">
                                                                                         <span>
-                                                                                        <h1 style="color:white!important; text-decoration:none;border:0;margin:0;padding:0;font-size:40px!important;line-height:1px;color:#555;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:20px">Asp Jobs</h1>
+                                                                                        <h1 class="asp-jobs">Asp Jobs</h1>
                                                                                         </span>
                                                                                     </a>
                                                                                 </td>
@@ -109,20 +109,37 @@
                                                                     <div style="min-height:1px;width:1px"></div>
                                                                 </td>
                                                                 <td align="left" style="border:0;margin:0;padding:0;font-size:1px;line-height:1px;color:#555;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;line-height:20px" width="100">
-                                                                    <center>
-                                                                        <h1>Confirm your subscription</h1>
-                                                                    </center>
-                                                                    <p>
-                                                                        Thanks for joining us! To make things official, please follow the link below to validate your subscription!
-                                                                    </p>
-                                                                    <p>
-                                                                        <a href="{{url}}"
-                                                                            target="_blank" >Verify Your Account</a>
-                                                                    </p>
-                                                                    <p>
-                                                                        <!--See ya soon!-->
-                                                                    </p>
-
+                                                                    <div class="padding-horizontal"> 
+                                                                        <h2 class="color-grey">Hi!</h2>
+                                                                        <p class="color-grey">There are <b>{{job_count}}</b> new jobs posted this week on AspJobs that might interest you.</p>
+                                                                    </div>
+                                                                   {{#each jobs as |job|}}
+                                                                        <a target="_blank" class="view" href="http://aspjobs.hoerkuapp.com/jobs/detail/{{job.slug}}">
+                                                                            <article class="row job">
+                                                                                <div class="col-md-6">
+                                                                                <div><b class="job-title">{{job.job_title}}</b></div>
+                                                                                <div>
+                                                                                    <span class="light-gray">at </span>
+                                                                                    <b class="sub-title">{{job.company_name}}</b>
+                                                                                    <span class="light-gray"> in </span>
+                                                                                    <b class="sub-title">{{job.company_location}}</b>
+                                                                                </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                <h4 >
+                                                                                    <span class="badge asp-violet badge-radio thin">{{job.job_type}}</span>
+                                                                                    <span class="badge asp-violet badge-radio thin">
+                                                                                    
+                                                                                    {{job.location_type}}
+                                                                                    </span>
+                                                                                    <div class="pull-right thin date-text">
+                                                                                    {{#humanize job.created_at}}{{/humanize}} ago
+                                                                                    </div>
+                                                                                </h4>
+                                                                                </div>
+                                                                            </article>
+                                                                        </a>
+                                                                    {{/each}}
                                                                 </td>
                                                                 <td style="border:0;margin:0;padding:0;font-size:1px;line-height:1px" width="1">
                                                                     <div style="min-height:1px;width:1px"></div>
