@@ -9,7 +9,7 @@ let jobsSchema = new Schema({
   job_description: { type: String, required: true }, // Job Description
   location_type: { type: String, required: true, allowedValues: ['Remote', 'OnSite'] }, // Location Type
   company_name: { type: String, required: true, maxlength: 55}, // Company Name
-  company_url: {type: String, maxlength: 200}, // Company Url
+  company_url: {type: String, maxlength: 200,  required: true}, // Company Url
   company_location: { type: String, required: true, maxlength: 55 }, // Company Location
   company_apply: { type: String, required: true }, // company_apply
   company_description: String, // Job Description

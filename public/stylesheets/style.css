@@ -752,6 +752,12 @@ label{
     width: 70%;
     margin: 0 auto;
   }
+
+  .mce-btn-group:not(:first-child) {
+     border-left: none !important;
+     padding-left: 0px!important;
+    margin-left: 0px!important;
+  }
 }
 
 @media(max-width:400px){
