@@ -1,6 +1,26 @@
+<section class="margin-md-top margin-md-bottom border-bottom text-center visible-xs ">
+        <hgroup>
+          <h5 class="weekly-text">
+            Get the latest new jobs in your inbox every day
+            <!--<select class="frecuency">
+                <option value="Day">day</option>
+                <option value="Week" selected>week</option>
+                <option value="2">month</option>
+            </select>-->
+          </h5>
+        </hgroup>
+        <form class="subscribe-container" method="POST" action="/subscription/insert">
+          <div class="input-group">
+            <input class="form-control subscribe-input mobile-subscribe" name="email" id="email" type="email" placeholder="Your Email" required />
+            <button class="btn btn-email asp-violet white" type="submit">Submit</button>
+          </div>
+        </form>
+        <!--<small class="promise"><em>We won't send spam.</em></small>-->
+    </section>
 <div class="container">
-  <div class="row margin-md">
-    <section class="col-md-8">
+  
+  <div class="row margin-md  margin-md-mobile">
+    <section class="col-sm-8">
       {{#each jobs as |job|}}
       <a class="view" href="/jobs/detail/{{job.slug}}">
           <article class="row job">
@@ -24,7 +44,7 @@
                   {{/ifeq}}
                   {{job.location_type}}
                 </span>
-                <div class="pull-right thin">
+                <div class="pull-right thin date-text">
                   {{#humanize job.created_at}}{{/humanize}} ago
                 </div>
               </h4>
@@ -33,7 +53,7 @@
       </a>
       {{/each}}
     </section>
-    <section class="col-md-4 text-center">
+    <section class="col-sm-4 text-center hidden-xs ">
         <hgroup>
           <h4 class="weekly-text">
             Get the latest new jobs in your inbox every day
@@ -45,6 +65,7 @@
           </h4>
           <br>
         </hgroup>
+        <br class="visible-sm">
         <form class="subscribe-container" method="POST" action="/subscription/insert">
           <div class="input-group">
             <input class="form-control subscribe-input" name="email" id="email" type="email" placeholder="Your Email" required />

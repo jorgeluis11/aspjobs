@@ -38,11 +38,18 @@ p, h1, h2, h3, h4, h5, h6, a{
   margin-top:40px;
 }
 
+.margin-md-bottom{
+  margin-top:20px;
+}
+
 
 .margin-bottom-none{
   margin-bottom:0px !important;
 }
 
+.border-bottom{
+  border-bottom: 1px solid rgba(150,150,150,.2);
+}
 
 .bold{
   font-weight: bold;
@@ -114,6 +121,7 @@ p, h1, h2, h3, h4, h5, h6, a{
 .navbar{
   border-radius: 0;
   border:none !important;
+  margin-bottom: 0px !important;
     /*box-shadow: 0px 1px 10px #aaa;*/
 }
 
@@ -273,6 +281,33 @@ a.btn-email{
 
 }
 
+button.btn-email{
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    color:rgba(0,0,0,.5) !important;
+        border: none;
+        /*border-left: none;*/
+            border-top-width: 0px;
+    border-bottom-width: 0px;
+    /*margin-top: 1px;*/
+        /*border:1px solid rgba(0,0,0,0.4) !important;*/
+color:white!important;
+    height: 32px !important;
+
+
+}
+
+.mobile-subscribe{
+
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    height: 32px !important;
+    border:1px solid rgba(0,0,0,0.4) !important;
+    /*margin-top: 1px;*/
+        border-right: none!important;
+
+
+}
 
 /* 3d buttons */
 .btn3d {
@@ -705,12 +740,62 @@ label{
 .jssocials-share-email i{
     color:rgba(0,0,0,.5) !important;
 }
+
+
+@media(max-width:600px){
+  .img-about{
+    width: 50%!important;
+    height: 50%!important;
+  }
+
+  .text-about{
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width:400px){
+  .img-about{
+    width: 70%!important;
+    height: 70%!important;
+  }
+
+  .text-about{
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .date-text{
+    font-size: .8em;
+  }
+
+  .margin-md-mobile{
+    margin-top: 0!important;
+  }
+}
+ 
  
 @media(max-width:1200px){
 
 
- .container img{
+ .container-info.container img{
     width: 100% !important;
     height: 100%!important;
   }
 }
+
+
+/*olark style*/
+#habla_window_div{
+  right:5%!important;
+
+}
+
+#habla_window_div #habla_topbar_div, #habla_offline_submit_input{
+  background-color: #5B2C92!important;
+}
+
+#habla_sizebutton_a{
+  font-size: 0px !important;
+}
+

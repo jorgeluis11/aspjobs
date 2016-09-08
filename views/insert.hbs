@@ -231,29 +231,54 @@
         
         // $("#job-form").validate();
         $("#job-form").validate_bootstrap();
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
+          tinymce.init({
+              selector: "textarea",
+              theme: "modern",
+              plugins: [
+                  "advlist autolink lists  charmap hr anchor pagebreak",
+                  "searchreplace wordcount visualblocks visualchars",
+                  "insertdatetime nonbreaking save contextmenu directionality",
+                  "emoticons template paste textcolor colorpicker textpattern "
+              ],
+              toolbar1: "undo redo | bold italic forecolor backcolor emoticons | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+              image_advtab: true,
+              templates: [
+                  {title: 'Test template 1', content: 'Test 1'},
+                  {title: 'Test template 2', content: 'Test 2'}
+              ],
+              setup: function(ed){
+                  var edt = ed;
+                  ed.on('blur', function(e) {
+                      $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
+                  });
+              }
+          });
+        else
+          tinymce.init({
+              selector: "textarea",
+              theme: "modern",
+              plugins: [
+                  "advlist autolink lists link image charmap preview hr anchor pagebreak",
+                  "searchreplace wordcount visualblocks visualchars fullscreen",
+                  "insertdatetime media nonbreaking save table contextmenu directionality",
+                  "emoticons template paste textcolor colorpicker textpattern imagetools"
+              ],
+              toolbar1: "preview insertfile undo redo | styleselect | bold italic forecolor backcolor emoticons | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media ",
+              image_advtab: true,
+              templates: [
+                  {title: 'Test template 1', content: 'Test 1'},
+                  {title: 'Test template 2', content: 'Test 2'}
+              ],
+              setup: function(ed){
+                  var edt = ed;
+                  ed.on('blur', function(e) {
+                      $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
+                  });
+              }
+          });
 
-        tinymce.init({
-            selector: "textarea",
-            theme: "modern",
-            plugins: [
-                "advlist autolink lists link image charmap preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools"
-            ],
-            toolbar1: "preview insertfile undo redo | styleselect | bold italic forecolor backcolor emoticons | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media ",
-            image_advtab: true,
-            templates: [
-                {title: 'Test template 1', content: 'Test 1'},
-                {title: 'Test template 2', content: 'Test 2'}
-            ],
-            setup: function(ed){
-                var edt = ed;
-                ed.on('blur', function(e) {
-                    $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
-                });
-            }
-        });
+
 
 
 
