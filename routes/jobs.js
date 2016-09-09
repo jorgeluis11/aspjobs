@@ -8,16 +8,14 @@ const moment = require('moment');
 const markdown = require('helper-markdown');
 const forms = require('forms-mongoose');
 
-
 router.get('/detail/:slug', (req, res, next) => {
   let slug = req.params.slug;
 
   Jobs.find({slug:slug}, (err, job) => {
-    console.log(job);
+
     res.render('jobs-detail', {'job': job[0],
       formatDateTime: (datetime, format) => {
-        console.log(datetime);
-          return moment(datetime).format(format);;
+          return moment(datetime).format(format);
       },
       helpers: {
         'ifeq': (v1, v2, options) => {
@@ -34,7 +32,7 @@ router.get('/detail/:slug', (req, res, next) => {
             return markdown(text);
           }
           return "";
-        }
+        },
       },
       'title': `Jobs Asp ${job[0].company_name}-${job[0].job_title}`,
       'metadescription': 'Asp jobs detail job section.'
@@ -46,7 +44,6 @@ router.get('/post', (req, res, next) => {
   res.render('insert',
     {
       formatDateTime: (datetime, format) => {
-        console.log(datetime);
           return moment(datetime).format(format);;
       },
       helpers: {

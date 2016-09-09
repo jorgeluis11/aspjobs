@@ -13,7 +13,7 @@ router.post('/insert', (req, res) => {
       req.json({success:false});
     }
     const token = uuid.v4();
-    
+
     Subscription.findOne({email: req.body.email},function( err, sub){
 
       if(!sub){
@@ -38,27 +38,22 @@ router.post('/insert', (req, res) => {
         }else{
           Token.findOne({_subscription: sub.id},function( err, t){
             if(t){
-              console.log("token already created");
               sendEmail(t.token, req.body.email);
-             
+
               res.render("verify", {message:'The email confirmation was sent, verify your subscription in your <a target="_blank" href="https://mail.google.com/mail/u/0/#search/aspjobs">email address</a>'});
             }else{
-              console.log(token);
-              console.log(sub.id)
               Token({
                 _subscription:sub.id,
                 token
               }).save();
-              console.log("token saved???");
-             
+
               sendEmail(token, req.body.email);
 
-              
               res.render("verify", {message:'The email confirmation was sent, verify your subscription in your <a target="_blank" href="https://mail.google.com/mail/u/0/#search/aspjobs">email address</a>'});
             }
           });
 
-        }  
+        }
 
       }
     });
@@ -66,11 +61,11 @@ router.post('/insert', (req, res) => {
 
 
 function sendEmail(token, email){
- 
+
     let templateDir = path.join(__dirname, '../views/email/subscribe');
     let subscribe = new EmailTemplate(templateDir)
     let data = {url:"http://aspjobs.herokuapp.com/subscription/confirm/"+ token, page:"aspjobs.herokuapp.com"}
-              
+
     subscribe.render(data, function (err, result) {
       let from_email = new helper.Email("hello@aspjobs.com");
       let subject = `ASP Jobs: Please Confirm Subscription`;

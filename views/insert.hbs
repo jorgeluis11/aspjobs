@@ -83,7 +83,7 @@
         <br>
         <div class="form-group">
             <div class="">
-              <input id="company_url" name="company_url" placeholder="Application URL" class="form-control input-md" type="url" maxlength="200" required>
+              <input id="company_url" name="company_url" placeholder="Application URL (optional)" class="form-control input-md" type="url" maxlength="200">
             </div>
         </div>
         <br>
@@ -122,17 +122,17 @@
 
 <!-- Modal -->
 <div id="modaldiv"  class="ui modal background-none">
-      <center>  <h1><i class="fa fa-hand-paper-o white"></i></h1>  
+      <center>  <h1><i class="fa fa-hand-paper-o white"></i></h1>
       <h2 class="white">Preview and submit</h2>
 
-      <p class="lead ng-binding white" ng-bind="message">Make sure everything looks great</p>  
+      <p class="lead ng-binding white" ng-bind="message">Make sure everything looks great</p>
     </center>
 
     <div class="mustache-template">
     </div>
     <br>
     <br>
-    <div class="splash-content text-center ng-scope">  
+    <div class="splash-content text-center ng-scope">
 
       <div id="submit-modal" class="btn btn-lg btn-success outline margin-md-horizontal submit-modal" submit="">
         <i class="fa fa-check"></i> Submit
@@ -228,10 +228,10 @@
 
     <script>
       $(document).ready(function(){
-        
+
         // $("#job-form").validate();
         $("#job-form").validate_bootstrap();
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
           tinymce.init({
               selector: "textarea",
               theme: "modern",
