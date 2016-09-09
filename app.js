@@ -149,12 +149,12 @@ rule.second = 1;
 // });
 
 
-var j = schedule.scheduleJob("0 0 11 1/1 * ? *", () =>{
+var j = schedule.scheduleJob("0 0 4 1/1 * ? *", () =>{
   //Jobs(req.body);
   // job.save();
   // res.json({success:true});
-    let today = moment.utc().startOf('day')
-    let tomorrow = moment(today).utc().add(1, 'days')
+    let today = moment.utc().add(-1,"Day");
+    let tomorrow = moment.utc(); 
 
       Jobs.find({created_at: {
           $gte: today.toDate(),
