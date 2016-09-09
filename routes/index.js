@@ -17,15 +17,19 @@ HandlebarsIntl.registerWith(Handlebars);
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  var todayCount = 0;
-  var yesterdayCount = 0;
-  var lastWeekCount = 0;
+  var showToday = false;
+  var showYesterday = false;
+  var showThisWeek = false;
+  var showThisMonth = false;
+  var showBeforeThisMonth = false;
   var today = moment().format("MM-DD-YYYY");
   var yesterday = moment().add(-1, 'days').format("MM-DD-YYYY");
-  var beforeYesterday = moment().add(-2, 'days').format("MM-DD-YYYY");
-  console.log(today)
-  console.log(yesterday)
-  console.log(beforeYesterday)
+  // var thisWeek = moment().add(-2, 'days').format("MM-DD-YYYY");
+  // var thisMonth = moment().add(-7, 'days').format("MM-DD-YYYY");
+  // var beforeThisMonth = moment().add(-30, 'days').format("MM-DD-YYYY");
+  // console.log(today)
+  // console.log(yesterday)
+  // console.log(thisWeek)
   console.log("-------------------------")
 
   Jobs.find((err, jobs) => {
@@ -43,26 +47,35 @@ router.get('/', (req, res, next) => {
         },
         'getDay': (created_at) => {
           createdAtFormat = moment(created_at).format("MM-DD-YYYY");
-          // console.log("Created At: ", createdAtFormat)
-          //
-          // console.log(moment(today).diff(createdAtFormat, 'days'))
-          // console.log(moment(yesterday).diff(createdAtFormat, 'days'))
-          // console.log(moment(beforeYesterday).diff(createdAtFormat, 'days'))
+          console.log("Created At: ", createdAtFormat)
+
+          // console.log(moment(today).diff(createdAtFormat, 'days'));
+          // console.log(moment(yesterday).diff(createdAtFormat, 'days'));
+          // console.log(moment(thisWeek).diff(createdAtFormat, 'days'));
 
           console.log("-------------------------")
-          if(todayCount <= 0 || yesterdayCount <= 0 || lastWeekCount <= 0)
+          if(showToday == false || showYesterday == false ||
+            showThisWeek == false || showThisMonth == false ||
+            showBeforeThisMonth == false)
           {
-
-            if(todayCount <= 0 && moment(today).isSame(createdAtFormat, 'days') >= 0)
+            if(showToday == false && today == createdAtFormat)
             {
-                todayCount++;
-                return "<h3>Today</h3>";
-            }else if(yesterdayCount <= 0 && moment(yesterday).diff(createdAtFormat, 'days') >= 0){
-              yesterdayCount++;
+                showToday = true;
+                return "<h2>Today</h2>";
+            }else if(showYesterday == false && yesterday == createdAtFormat){
+              showYesterday = true;
               return "<h3>Yesterday</h3>"
-            }else if(lastWeekCount <= 0 && moment(beforeYesterday).diff(createdAtFormat, 'days') >= 0){
-              lastWeekCount++;
+            }else if(showThisWeek == false && moment(today).diff(createdAtFormat, 'days') >= 3 &&
+                     moment(today).diff(createdAtFormat, 'days') <= 7){
+              showThisWeek = true;
               return "<h3>Last Week</h3>";
+            }else if(showThisMonth == false && moment(today).diff(createdAtFormat, 'days') >= 8 &&
+                     moment(today).diff(createdAtFormat, 'days') <= 30){
+              showThisMonth = true;
+              return "<h3>The Last 30 Days</h3>";
+            }else if(showBeforeThisMonth == false && moment(today).diff(createdAtFormat, 'days') > 30){
+              showBeforeThisMonth = true;
+              return "<h3>Before 30 days</h3>";
             }
 
           }
