@@ -48,21 +48,21 @@ router.get('/', (req, res, next) => {
             if(showToday == false && today == createdAtFormat)
             {
                 showToday = true;
-                return "<h2>Today</h2>";
+                return "<h3 class='days-divider'>Today</h3>";
             }else if(showYesterday == false && yesterday == createdAtFormat){
               showYesterday = true;
-              return "<h3>Yesterday</h3>"
+              return "<h3 class='days-divider'>Yesterday</h3>"
             }else if(showThisWeek == false && moment(today).diff(createdAtFormat, 'days') >= 3 &&
                      moment(today).diff(createdAtFormat, 'days') <= 7){
               showThisWeek = true;
-              return "<h3>Last Week</h3>";
+              return "<h3 class='days-divider'>Last Week</h3>";
             }else if(showThisMonth == false && moment(today).diff(createdAtFormat, 'days') >= 8 &&
                      moment(today).diff(createdAtFormat, 'days') <= 30){
               showThisMonth = true;
-              return "<h3>The Last 30 Days</h3>";
+              return "<h3 class='days-divider'>The Last 30 Days</h3>";
             }else if(showBeforeThisMonth == false && moment(today).diff(createdAtFormat, 'days') > 30){
               showBeforeThisMonth = true;
-              return "<h3>Before 30 days</h3>";
+              return "<h3 class='days-divider'>Before 30 days</h3>";
             }
 
           }
