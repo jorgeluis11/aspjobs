@@ -24,13 +24,6 @@ router.get('/', (req, res, next) => {
   var showBeforeThisMonth = false;
   var today = moment().format("MM-DD-YYYY");
   var yesterday = moment().add(-1, 'days').format("MM-DD-YYYY");
-  // var thisWeek = moment().add(-2, 'days').format("MM-DD-YYYY");
-  // var thisMonth = moment().add(-7, 'days').format("MM-DD-YYYY");
-  // var beforeThisMonth = moment().add(-30, 'days').format("MM-DD-YYYY");
-  // console.log(today)
-  // console.log(yesterday)
-  // console.log(thisWeek)
-  console.log("-------------------------")
 
   Jobs.find((err, jobs) => {
     res.render('jobs', {'jobs': jobs,
@@ -47,13 +40,7 @@ router.get('/', (req, res, next) => {
         },
         'getDay': (created_at) => {
           createdAtFormat = moment(created_at).format("MM-DD-YYYY");
-          console.log("Created At: ", createdAtFormat)
 
-          // console.log(moment(today).diff(createdAtFormat, 'days'));
-          // console.log(moment(yesterday).diff(createdAtFormat, 'days'));
-          // console.log(moment(thisWeek).diff(createdAtFormat, 'days'));
-
-          console.log("-------------------------")
           if(showToday == false || showYesterday == false ||
             showThisWeek == false || showThisMonth == false ||
             showBeforeThisMonth == false)
