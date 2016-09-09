@@ -95,9 +95,12 @@ router.get('/daily', (req, res, next) => {
         $lt: tomorrow.toDate()
         }
       }, (err, jobs) => {
-      let templateDir = path.join(__dirname, "../views/email/daily");//'../views/email/subscribe');
-      let subscribe = new EmailTemplate(templateDir);
-      let data = {
+
+        if(jobs.length === 0)
+          return;
+        let templateDir = path.join(__dirname, "../views/email/daily");//'../views/email/subscribe');
+        let subscribe = new EmailTemplate(templateDir);
+        let data = {
         formatDateTime: (datetime, format) => {
             return moment(datetime).format(format);;
         },
