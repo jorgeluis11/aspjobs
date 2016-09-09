@@ -18,10 +18,13 @@
         <!--<small class="promise"><em>We won't send spam.</em></small>-->
     </section>
 <div class="container">
-  
+
   <div class="row margin-md  margin-md-mobile">
     <section class="col-sm-8">
       {{#each jobs as |job|}}
+
+      {{{getDay job.created_at}}}
+
       <a class="view" href="/jobs/detail/{{job.slug}}">
           <article class="row job">
             <div class="col-md-6">

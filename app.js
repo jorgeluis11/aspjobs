@@ -15,9 +15,14 @@ const mongoose = require("mongoose");
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const helper = require('sendgrid').mail;
-var sm = require('sitemap')
+const sm = require('sitemap')
 
+const EmailTemplate = require('email-templates').EmailTemplate
+
+
+const Jobs = require('./models/jobs');
 const Subscription = require('./models/subscription');
+const moment = require('moment');
 
 // mongoose.connect('process.env.DATABASE');
 mongoose.connect('mongodb://AngryDevelopers1234:Test1234@ds013206.mlab.com:13206/aspjobs');
@@ -111,7 +116,7 @@ app.use((err, req, res, next) => {
 var rule = new schedule.RecurrenceRule();
 rule.second = 1;
 // console.log(rule);
-var j = schedule.scheduleJob(rule, () =>{
+// var j = schedule.scheduleJob(rule, () =>{
 
   // Subscription.find({active:true,schedule:"Daily"}, function(error, subs){
   //   console.log(subs);
@@ -141,6 +146,91 @@ var j = schedule.scheduleJob(rule, () =>{
 
   // });
 
+// });
+
+
+var j = schedule.scheduleJob("0 0 11 1/1 * ? *", () =>{
+  //Jobs(req.body);
+  // job.save();
+  // res.json({success:true});
+    let today = moment.utc().startOf('day')
+    let tomorrow = moment(today).utc().add(1, 'days')
+
+      Jobs.find({created_at: {
+          $gte: today.toDate(),
+          $lt: tomorrow.toDate()
+          }
+        }).sort({ "created_at": -1 }).find({}, (err, jobs) => {
+
+        if(jobs.length === 0)
+          return;
+        let templateDir = path.join(__dirname, "../views/email/daily");//'../views/email/subscribe');
+        let subscribe = new EmailTemplate(templateDir);
+        let data = {
+        formatDateTime: (datetime, format) => {
+            return moment(datetime).format(format);;
+        },
+        helpers: {
+          'ifeq': (v1, v2, options) => {
+            if(v1 === v2) {
+              return options.fn(this);
+            }
+            return options.inverse(this);
+          },
+          'humanize': (v1, options) => {
+              return  moment.utc(v1).from(moment(), true);
+          },
+          markdown: (text) => {
+            if(text != null && text != '') {
+              return markdown(text);
+            }
+            return "";
+          }
+        },
+        jobs,
+        job_count:jobs.length,
+        page:"https://aspjobs.herokuapp.com"}
+                
+        sendEmail(undefined, "./views/email/daily", data);
+        
+  });
 });
+
+
+function sendEmail(email, template, data){
+ 
+    let templateDir = path.join(__dirname, template);//'../views/email/subscribe');
+    let subscribe = new EmailTemplate(templateDir);
+   
+    subscribe.render(data, function (err, result) {
+      let from_email = new helper.Email("hello@aspjobs.com");
+      let subject = `ASP Jobs has ${data.jobs.length} positions avalible!`;
+
+      let content = new helper.Content('text/html', result.html);
+
+      var sg = require('sendgrid')("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");
+      // var sg = require('sendgrid')("process.env.sendGridAPI");
+
+       Subscription.find({verified:true}, function(err, subs){
+         subs.forEach(function(item) {
+            let to_email = new helper.Email(item.email);
+            let mail = new helper.Mail(from_email, subject, to_email, content)
+            var request = sg.emptyRequest({
+              method: 'POST',
+              path: '/v3/mail/send',
+              body: mail.toJSON(),
+              title:"AspJobs"
+            });
+
+            sg.API(request, function(error, response) {
+              // console.log(response.statusCode)
+              // console.log(response.body)
+              // console.log(response.headers)
+            });
+         }, this);
+        
+      }); 
+  })
+}
 
 module.exports = app;

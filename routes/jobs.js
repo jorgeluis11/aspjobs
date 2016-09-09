@@ -13,16 +13,14 @@ const forms = require('forms-mongoose');
 const path = require('path')
 const EmailTemplate = require('email-templates').EmailTemplate
 
-
 router.get('/detail/:slug', (req, res, next) => {
   let slug = req.params.slug;
 
   Jobs.find({slug:slug}, (err, job) => {
-    console.log(job);
+
     res.render('jobs-detail', {'job': job[0],
       formatDateTime: (datetime, format) => {
-        console.log(datetime);
-          return moment(datetime).format(format);;
+          return moment(datetime).format(format);
       },
       helpers: {
         'ifeq': (v1, v2, options) => {
@@ -39,7 +37,7 @@ router.get('/detail/:slug', (req, res, next) => {
             return markdown(text);
           }
           return "";
-        }
+        },
       },
       'title': `Asp Jobs - ${job[0].company_name}-${job[0].job_title}`,
       'metadescription': 'Asp Jobs | detail job section.'
@@ -51,7 +49,6 @@ router.get('/post', (req, res, next) => {
   res.render('insert',
     {
       formatDateTime: (datetime, format) => {
-        console.log(datetime);
           return moment(datetime).format(format);;
       },
       helpers: {
@@ -91,11 +88,11 @@ router.get('/daily', (req, res, next) => {
     let tomorrow = moment(today).utc().add(1, 'days')
 
       Jobs.find({created_at: {
-        $gte: today.toDate(),
-        $lt: tomorrow.toDate()
-        }
-      }, (err, jobs) => {
-
+          $gte: today.toDate(),
+          $lt: tomorrow.toDate()
+          }
+        }).sort({ "created_at": -1 }).find({}, (err, jobs) => {
+          // jobs=[];
         if(jobs.length === 0)
           return;
         let templateDir = path.join(__dirname, "../views/email/daily");//'../views/email/subscribe');
