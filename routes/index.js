@@ -39,12 +39,12 @@ router.get('/', (req, res, next) => {
             return moment.utc(v1).from(moment(), true);
         },
         'getDay': (created_at) => {
-          createdAtFormat = moment(created_at).format("MM-DD-YYYY");
-
           if(showToday == false || showYesterday == false ||
-            showThisWeek == false || showThisMonth == false ||
-            showBeforeThisMonth == false)
+             showThisWeek == false || showThisMonth == false ||
+             showBeforeThisMonth == false)
           {
+            var createdAtFormat = moment(created_at).format("MM-DD-YYYY");
+
             if(showToday == false && today == createdAtFormat)
             {
                 showToday = true;
@@ -55,7 +55,7 @@ router.get('/', (req, res, next) => {
             }else if(showThisWeek == false && moment(today).diff(createdAtFormat, 'days') >= 3 &&
                      moment(today).diff(createdAtFormat, 'days') <= 7){
               showThisWeek = true;
-              return "<h3 class='days-divider'>Last Week</h3>";
+              return "<h3 class='days-divider'>This Week</h3>";
             }else if(showThisMonth == false && moment(today).diff(createdAtFormat, 'days') >= 8 &&
                      moment(today).diff(createdAtFormat, 'days') <= 30){
               showThisMonth = true;
@@ -64,7 +64,6 @@ router.get('/', (req, res, next) => {
               showBeforeThisMonth = true;
               return "<h3 class='days-divider'>Before 30 days</h3>";
             }
-
           }
         }
       },
