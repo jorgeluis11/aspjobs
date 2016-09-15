@@ -428,7 +428,7 @@ color:white!important;
 
 small{
 		text-align:center;
-        font-size:1.5em; 
+        font-size:1.5em;
         text-decoration:underline;
         color:gray;
 }
@@ -591,7 +591,7 @@ label{
   position: absolute;
   top: 0;
   left: 0;
-  
+
   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
   animation: sk-bounce 2.0s infinite ease-in-out;
 }
@@ -607,10 +607,10 @@ label{
 }
 
 @keyframes sk-bounce {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(0.0);
     -webkit-transform: scale(0.0);
-  } 50% { 
+  } 50% {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
@@ -680,7 +680,7 @@ label{
 }
 
 #share>jssocials-share{
- 
+
 
     display: inline-block;
     margin: 0 auto;
@@ -787,7 +787,7 @@ label{
     width: 80%;
     margin: 0 auto;
   }
-  
+
   .date-text{
     font-size: .8em;
   }
@@ -801,8 +801,8 @@ label{
     height: 100%!important;
   }
 }
- 
- 
+
+
 @media(max-width:1200px){
 
 
@@ -815,7 +815,7 @@ label{
     width: 100% !important;
   }
 
-  
+
 }
 
 
@@ -833,3 +833,8 @@ label{
   font-size: 0px !important;
 }
 
+.days-divider{
+  font-weight: 800;
+  color: black;
+  text-shadow: 1px 1px 4px #ddd;
+}
