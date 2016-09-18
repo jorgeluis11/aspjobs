@@ -51,6 +51,7 @@ router.get('/post', (req, res, next) => {
       formatDateTime: (datetime, format) => {
           return moment(datetime).format(format);;
       },
+      active: { post: true },
       helpers: {
         'ifeq': (v1, v2, options) => {
           if(v1 === v2) {
@@ -121,18 +122,18 @@ router.get('/daily', (req, res, next) => {
         jobs,
         job_count:jobs.length,
         page:"https://aspjobs.herokuapp.com"}
-                
+
         sendEmail(undefined, "../views/email/daily", data);
-        
+
   });
 });
 
 
 function sendEmail(email, template, data){
- 
+
     let templateDir = path.join(__dirname, template);//'../views/email/subscribe');
     let subscribe = new EmailTemplate(templateDir);
-   
+
     subscribe.render(data, function (err, result) {
       let from_email = new helper.Email("hello@aspjobs.com");
       let subject = `ASP Jobs has ${data.jobs.length} positions avalible!`;
@@ -159,8 +160,8 @@ function sendEmail(email, template, data){
               // console.log(response.headers)
             });
          }, this);
-        
-      }); 
+
+      });
   })
 }
 

@@ -12,7 +12,7 @@
     <meta name="content-language" content="en" />
     <meta name="language" content="en" />
     <meta name="Keywords" content="dotnet,asp,jobs,C#,visual basic,MVC,Webforms,Microsoft,aspcore,development,remote,onsite,.net jobs,work,freelance,contract,full-time,part-time,apply" />
-    
+
     <!--<meta content="http://static.tutsplus.com/assets/favicon-8b86ba48e7f31535461f183680fe2ac9.png" property="og:image">-->
     <link rel="icon" href="../../favicon.ico">
     <script src="/js/jquery.3.0.1.min.js"></script>
@@ -22,7 +22,7 @@
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
     <link href="/stylesheets/jumbotron.css" rel="stylesheet">
     <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
-    
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
@@ -51,8 +51,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-              <li><a class="white" href="/about/">About Us</a></li>
-              <li><a class="white" href="/jobs/post">Post a Job!</a></li>
+              <li><a class="white {{#if active.about}}active{{/if}}" href="/about/">About Us</a></li>
+              <li><a class="white  {{#if active.post}}active{{/if}}" href="/jobs/post">Post a Job!</a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +64,7 @@
     </footer>-->
     <script src="/js/bootstrap.min.js"></script>
 
-   
+
 
     <!-- begin olark code -->
     <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
@@ -95,7 +95,7 @@
 
       ga('create', 'UA-83433249-1', 'auto');
       ga('send', 'pageview');
-      
+
       setTimeout(function(){
           $("#habla_oplink_a").html("Feedback");
           $("#habla_offline_message_span").html("Let me know what you'd like to see me improve here - @aspjobs");
