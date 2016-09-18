@@ -51,6 +51,7 @@ router.get('/post', (req, res, next) => {
       formatDateTime: (datetime, format) => {
           return moment(datetime).format(format);;
       },
+      active: { post: true },
       helpers: {
         'ifeq': (v1, v2, options) => {
           if(v1 === v2) {

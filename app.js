@@ -149,12 +149,12 @@ rule.second = 1;
 // });
 
 
-var j = schedule.scheduleJob("0 0 11 1/1 * ? *", () =>{
+var j = schedule.scheduleJob("0 12 * * *", () =>{
   //Jobs(req.body);
   // job.save();
   // res.json({success:true});
-    let today = moment.utc().startOf('day')
-    let tomorrow = moment(today).utc().add(1, 'days')
+    let today = moment.utc().add(-1,"Day");
+    let tomorrow = moment.utc();
 
       Jobs.find({created_at: {
           $gte: today.toDate(),
@@ -190,18 +190,18 @@ var j = schedule.scheduleJob("0 0 11 1/1 * ? *", () =>{
         jobs,
         job_count:jobs.length,
         page:"https://aspjobs.herokuapp.com"}
-                
+
         sendEmail(undefined, "./views/email/daily", data);
-        
+
   });
 });
 
 
 function sendEmail(email, template, data){
- 
+
     let templateDir = path.join(__dirname, template);//'../views/email/subscribe');
     let subscribe = new EmailTemplate(templateDir);
-   
+
     subscribe.render(data, function (err, result) {
       let from_email = new helper.Email("hello@aspjobs.com");
       let subject = `ASP Jobs has ${data.jobs.length} positions avalible!`;
@@ -228,8 +228,8 @@ function sendEmail(email, template, data){
               // console.log(response.headers)
             });
          }, this);
-        
-      }); 
+
+      });
   })
 }
 
