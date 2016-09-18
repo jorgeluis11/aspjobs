@@ -67,7 +67,7 @@ router.get('/', (req, res, next) => {
           }
         }
       },
-      'title': 'Jobs Asp',
+      'title': 'Home Page',
       'metadescription': 'Asp jobs homepage section.'
     });
   }).sort({ "created_at": -1 });

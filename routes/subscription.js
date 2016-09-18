@@ -39,8 +39,6 @@ router.post('/insert', (req, res) => {
         }else{
           Token.findOne({_subscription: sub.id},function( err, t){
             if(t){
-              console.log("token already created");
-              console.log(t);
               var date = moment(t.created_at).day();
               var now = moment().day();
 
@@ -48,7 +46,7 @@ router.post('/insert', (req, res) => {
                   t.created_at = moment();
                   t.save();
                   sendEmail(t.token, req.body.email);
-              } 
+              }
 
               res.render("verify", {message:'The confirmation email was sent, verify your <a target="_blank" href="https://mail.google.com/mail/u/0/#search/aspjobs">email address</a>'});
 
@@ -108,9 +106,7 @@ router.get('/confirm/:token', (req, res) => {
     if(!token){
       res.render("verify", {message:'Your account is already subscribed.'});
     }
-    console.log(token._subscription);
     Subscription.findById(token._subscription, ( err, sub) => {
-      console.log("sub",sub);
       sub.verified = true;
       sub.save()
       token.remove();
@@ -123,7 +119,6 @@ router.get('/test', (req, res) => {
     let templateDir = path.join(__dirname, '../views/email/subscribe');
     let subscribe = new EmailTemplate(templateDir)
     let data = {url:"google.com",page:"amazon.com"}
-    console.log(subscribe);
     subscribe.render(data, function (err, result) {
       res.send(result.html);
     })

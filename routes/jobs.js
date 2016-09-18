@@ -39,8 +39,8 @@ router.get('/detail/:slug', (req, res, next) => {
           return "";
         },
       },
-      'title': `Asp Jobs - ${job[0].company_name}-${job[0].job_title}`,
-      'metadescription': 'Asp Jobs | detail job section.'
+      'title': `${job[0].company_name} - ${job[0].job_title}`,
+      'metadescription': 'Asp Jobs detail job section.'
     });
   })
 });
@@ -68,7 +68,7 @@ router.get('/post', (req, res, next) => {
           return "";
         }
       },
-      'title': `Asp Jobs | Post New Job`,
+      'title': `Post New Job`,
       'metadescription': 'Asp jobs post new job section.'
     });
 });
@@ -121,18 +121,18 @@ router.get('/daily', (req, res, next) => {
         jobs,
         job_count:jobs.length,
         page:"https://aspjobs.herokuapp.com"}
-                
+
         sendEmail(undefined, "../views/email/daily", data);
-        
+
   });
 });
 
 
 function sendEmail(email, template, data){
- 
+
     let templateDir = path.join(__dirname, template);//'../views/email/subscribe');
     let subscribe = new EmailTemplate(templateDir);
-   
+
     subscribe.render(data, function (err, result) {
       let from_email = new helper.Email("hello@aspjobs.com");
       let subject = `ASP Jobs has ${data.jobs.length} positions avalible!`;
@@ -150,7 +150,7 @@ function sendEmail(email, template, data){
               method: 'POST',
               path: '/v3/mail/send',
               body: mail.toJSON(),
-              title:"AspJobs"
+              title: "Subscribe"
             });
 
             sg.API(request, function(error, response) {
@@ -159,8 +159,8 @@ function sendEmail(email, template, data){
               // console.log(response.headers)
             });
          }, this);
-        
-      }); 
+
+      });
   })
 }
 
