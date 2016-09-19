@@ -1,124 +1,98 @@
+<link href="/stylesheets/bootstrap-form.css" rel="stylesheet">
+<link href="/stylesheets/semantic-modal.css" rel="stylesheet">
+<link href="/stylesheets/dimmer.min.css" rel="stylesheet">
+<link href="/stylesheets/transition.min.css" rel="stylesheet">
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/tinymce.min.js"></script>
 
-  <link href="/stylesheets/bootstrap-form.css" rel="stylesheet">
-  <link href="/stylesheets/semantic-modal.css" rel="stylesheet">
-  <link href="/stylesheets/dimmer.min.css" rel="stylesheet">
-  <link href="/stylesheets/transition.min.css" rel="stylesheet">
-  <script src="/js/jquery.validate.min.js"></script>
-  <script src="/js/tinymce.min.js"></script>
+<div class="container auth">
+  <div id="big-form" class="auth-box">
+    <h1>Post a Job</h1>
+    <form id="job-form">
+      <fieldset>
 
-<style>
-  .navbar-fixed-top, .navbar-fixed-bottom {
-      position: absolute !important;
-      right: 0;
-      left: 0;
-      z-index: 0;
-  }
-</style>
-  <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
-  <!--<style type="text/css">
-    html{
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-    iframe{
-      position: absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      top:0;
-      border:0;
-    }
-  </style>-->
-
-  <div class="container auth">
-    <div id="big-form" class="auth-box">
-      <h1>Post a Job</h1>
-      <form id="job-form">
-        <fieldset>
-
-          <div class="form-group">
-            <div class="">
-              <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text" maxlength="55" required>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="job_type" class="col-sm-4 col-md-4 control-label margin-sm-bottom">Job Type</label>
-
-            <div class="col-sm-12 col-md-12">
-                <div id="radioBtn" class="btn-group">
-                  <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="job_type" data-title="Full-time">Full-time</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Part-time">Part-time</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Contract">Contract</a>
-                  <a name="job_type" class="btn btn-primary btn-sm notActive border-radius-right" data-toggle="job_type" data-title="Freelance">Freelance</a>
-                <input type="hidden" name="job_type" id="job_type" value="Full-time">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="location_type" class="col-sm-4 col-md-4 control-label">Location Type</label>
-            <div class="col-sm-12 col-md-12">
-                <div id="radioBtn" class="btn-group">
-                  <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote"><span class="fa fa-wifi thin"></span> Remote</a>
-                  <a name="location_type" class="btn btn-primary btn-sm border-radius-right notActive" data-toggle="location_type" data-title="OnSite"><span class="fa fa-briefcase thin"></span> OnSite</a>
-                <input type="hidden" name="location_type" id="location_type" value="Remote">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class=" control-label" for="textarea">Job Description</label>
-            <div class="">
-              <textarea class="form-control tinyedotor1" id="job-description" name="job_description" value="" required></textarea>
-            </div>
-          </div>
-          <br>
-          <div class="form-group">
-            <div class="">
-              <input id="company_name" name="company_name" placeholder="Company name" class="form-control input-md" type="text" maxlength="55" required>
-            </div>
-        </div>
-        <br>
         <div class="form-group">
-            <div class="">
-              <input id="company_url" name="company_url" placeholder="Application URL (optional)" class="form-control input-md" type="url" maxlength="200">
-            </div>
-        </div>
-        <br>
-        <div class="form-group">
-            <div class="">
-              <input id="company_location" name="company_location" placeholder="Company Location" class="form-control input-md" type="text" maxlength="55" required>
-            </div>
-        </div>
-        <br>
-        <div class="form-group">
-          <label class=" control-label" for="textarea">Company Description (optional)</label>
           <div class="">
-            <textarea class="form-control" id="company-description" name="company_description" value=""></textarea>
+            <input id="job_title" name="job_title" placeholder="Job Title" class="form-control input-md" type="text" maxlength="55" required>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="job_type" class="col-sm-4 col-md-4 control-label margin-sm-bottom">Job Type</label>
+
+          <div class="col-sm-12 col-md-12">
+              <div id="radioBtn" class="btn-group">
+                <a name="job_type" class="btn btn-primary btn-sm active" data-toggle="job_type" data-title="Full-time">Full-time</a>
+                <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Part-time">Part-time</a>
+                <a name="job_type" class="btn btn-primary btn-sm notActive" data-toggle="job_type" data-title="Contract">Contract</a>
+                <a name="job_type" class="btn btn-primary btn-sm notActive border-radius-right" data-toggle="job_type" data-title="Freelance">Freelance</a>
+              <input type="hidden" name="job_type" id="job_type" value="Full-time">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="location_type" class="col-sm-4 col-md-4 control-label">Location Type</label>
+          <div class="col-sm-12 col-md-12">
+              <div id="radioBtn" class="btn-group">
+                <a name="location_type" class="btn btn-primary btn-sm active" data-toggle="location_type" data-title="Remote"><span class="fa fa-wifi thin"></span> Remote</a>
+                <a name="location_type" class="btn btn-primary btn-sm border-radius-right notActive" data-toggle="location_type" data-title="OnSite"><span class="fa fa-briefcase thin"></span> OnSite</a>
+              <input type="hidden" name="location_type" id="location_type" value="Remote">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class=" control-label" for="textarea">Job Description</label>
+          <div class="">
+            <textarea class="form-control tinyedotor1" id="job-description" name="job_description" value="" required></textarea>
           </div>
         </div>
         <br>
         <div class="form-group">
-          <label class=" control-label" for="textarea">How can people apply to this job?</label>
           <div class="">
-            <textarea class="form-control tinyedotor2" id="company-apply" name="company_apply" value="" required></textarea>
+            <input id="company_name" name="company_name" placeholder="Company name" class="form-control input-md" type="text" maxlength="55" required>
           </div>
+      </div>
+      <br>
+      <div class="form-group">
+          <div class="">
+            <input id="company_url" name="company_url" placeholder="Application URL (optional)" class="form-control input-md" type="url" maxlength="200">
+          </div>
+      </div>
+      <br>
+      <div class="form-group">
+          <div class="">
+            <input id="company_location" name="company_location" placeholder="Company Location" class="form-control input-md" type="text" maxlength="55" required>
+          </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class=" control-label" for="textarea">Company Description (optional)</label>
+        <div class="">
+          <textarea class="form-control" id="company-description" name="company_description" value=""></textarea>
         </div>
-        <input class="btn asp-violet white submit-button" type="button"  value="Preview and Submit"  />
-        </fieldset>
-      </form>
-    </div>
-    <div class="clearfix"></div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class=" control-label" for="textarea">How can people apply to this job?</label>
+        <div class="">
+          <textarea class="form-control tinyedotor2" id="company-apply" name="company_apply" value="" required></textarea>
+        </div>
+      </div>
+      <input class="btn asp-violet white submit-button" type="button"  value="Preview and Submit"  />
+      </fieldset>
+    </form>
   </div>
-  <!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
-  <!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
-  <script src="/js/bootstrap-form.js" rel="stylesheet"></script>
-  <script src="/js/semantic-modal.js"></script>
-  <script src="/js/dimmer.min.js"></script>
-  <script src="/js/transition.min.js"></script>
-  <script src="/js/mustache.min.js"></script>
+  <div class="clearfix"></div>
+</div>
+<!--<iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://angrydevelopers.typeform.com/to/lJFA8E"></iframe>-->
+<!--<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>-->
+<script src="/js/bootstrap-form.js" type="text/javascript"></script>
+<script src="/js/semantic-modal.js" type="text/javascript"></script>
+<script src="/js/dimmer.min.js" type="text/javascript"></script>
+<script src="/js/transition.min.js" type="text/javascript"></script>
+<script src="/js/mustache.min.js" type="text/javascript"></script>
 
 <!-- Modal -->
 <div id="modaldiv"  class="ui modal background-none">
@@ -171,7 +145,7 @@
   </div>
 </div>
 
-<script id="job-detail-template" type="text/x-mustache-template">
+<div id="job-detail-template" type="text/x-mustache-template">
   <div class="container margin-md template">
       <div class="row">
         <section class="col-md-8 col-md-offset-2 job-post  backgound-white">
@@ -223,134 +197,6 @@
         </section>
       </div>
     </div>
-</script>
+</div>
 
-
-    <script>
-      $(document).ready(function(){
-
-        // $("#job-form").validate();
-        $("#job-form").validate_bootstrap();
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
-          tinymce.init({
-              selector: "textarea",
-              theme: "modern",
-              plugins: [
-                  "advlist autolink lists  charmap hr anchor pagebreak",
-                  "searchreplace wordcount visualblocks visualchars",
-                  "insertdatetime nonbreaking save contextmenu directionality",
-                  "emoticons template paste textcolor colorpicker textpattern "
-              ],
-              toolbar1: "undo redo | bold italic forecolor backcolor emoticons outdent indent | alignleft aligncenter alignright alignjustify bullist numlist",
-              image_advtab: true,
-              templates: [
-                  {title: 'Test template 1', content: 'Test 1'},
-                  {title: 'Test template 2', content: 'Test 2'}
-              ],
-              setup: function(ed){
-                  var edt = ed;
-                  ed.on('blur', function(e) {
-                      $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
-                  });
-              }
-          });
-        else
-          tinymce.init({
-              selector: "textarea",
-              theme: "modern",
-              plugins: [
-                  "advlist autolink lists link image charmap preview hr anchor pagebreak",
-                  "searchreplace wordcount visualblocks visualchars fullscreen",
-                  "insertdatetime media nonbreaking save table contextmenu directionality",
-                  "emoticons template paste textcolor colorpicker textpattern imagetools"
-              ],
-              toolbar1: "preview insertfile undo redo | styleselect | bold italic forecolor backcolor emoticons | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media ",
-              image_advtab: true,
-              templates: [
-                  {title: 'Test template 1', content: 'Test 1'},
-                  {title: 'Test template 2', content: 'Test 2'}
-              ],
-              setup: function(ed){
-                  var edt = ed;
-                  ed.on('blur', function(e) {
-                      $("#"+this.id).html( tinyMCE.activeEditor.getContent() );
-                  });
-              }
-          });
-
-
-
-
-
-        $(".submit-button").click(function(){
-         if(!$("form").valid()){
-           var targetList = $("form").find(".help-block");
-
-            for(target in targetList){
-              var target = $(targetList[target]);
-              console.log(target);
-              if($(target).css("display") !== "none"){
-                $(target).siblings("input").focus();
-                return;
-              }
-            }
-         }
-           if(!$('.tinyedotor1').html()){
-            $('.tinyedotor1').focus();
-            $('html, body').animate({
-                scrollTop: $(".tinyedotor1").parent().offset().top
-            }, 0);
-            return;
-          }
-
-          if(!$('.tinyedotor2').html()){
-            $('.tinyedotor2').focus();
-            $('html, body').animate({
-                  scrollTop: $(".tinyedotor2").parent().offset().bottom
-            }, 0);
-            return;
-          }
-
-          var template = $("#job-detail-template").html();
-          Mustache.parse(template);   // optional, speeds up future uses
-
-          // console.log(Mustache.render(template, {job_title:"cccccccc",job:"asdfg"}));
-          var form = $("form").serializeObject();
-          form.remote = form.location_type === "Remote"?"Remote":undefined;
-          form.onsite = form.location_type === "OnSite"?"OnSite":undefined;
-          $(".mustache-template").html(Mustache.render(template, form));
-
-          $('#modaldiv').modal("show");
-
-        });
-
-        $("#close-modal").click(function(){
-          // console.log("modal");
-          $('#modaldiv').modal("hide");
-
-        });
-
-        $(".submit-modal").click(function(){
-          $('#modaldiv').hide();
-          $('#loading-modal').modal("show");
-
-          $.post("/jobs/new", $('form').serialize())
-          .success(function(response){
-              $('#loading-modal').modal("hide");
-              console.log(response)
-              if(response.success){
-                setTimeout(function(){
-                  $('#loading-modal').html($("#thanks-modal").html());
-                  $(".submit-thanks-button").click(function(){
-                    window.location = "/";
-                  });
-                },1200)
-
-              }
-
-            }).error(function(response){
-              $("#thanks-modal").modal("show");
-            });
-        });
-    })
-      </script>
+<script src="/js/insert.js" type="text/javascript"></script>
